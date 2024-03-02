@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import classes from './Header.module.scss'
 
 const Header = () => {
@@ -10,10 +10,22 @@ const Header = () => {
                 <nav>
                     <ul className={classes.links}>
                         <li>
-                            <Link to='characters' className={classes.link}>Characters</Link>
+                        <NavLink
+                                to='characters' className={
+                                ({ isActive }) =>
+                                    isActive ? classes.linkActive : classes.link
+                                }>
+                                Characters
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to='comics' className={classes.link}>Comics</Link>
+                            <NavLink
+                                to='comics' className={
+                                ({ isActive }) =>
+                                    isActive ? classes.linkActive : classes.link
+                                }>
+                                Comics
+                            </NavLink>
                         </li>
                     </ul>
                 </nav>

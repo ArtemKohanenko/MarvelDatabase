@@ -20,6 +20,13 @@
         list-style-type: none;
 
         .link {
+            text-decoration: none;
+            color: $color-tab-text;
+            font-size: $font-size-primary;
+            font-weight: 600;
+        }
+        .linkActive {
+            text-decoration: underline;
             color: $color-tab-text;
             font-size: $font-size-primary;
             font-weight: 600;
