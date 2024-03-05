@@ -1,0 +1,26 @@
+@import 'src/styles';
+
+.container {
+    display: flex;
+    align-items: end;
+    width: 100%;
+    height: 300px;
+    background-color: $color-footer-background;
+    padding: 10px;
+
+    .leftBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 400px;
+
+        .logo {
+            height: 50px;
+        }
+
+        .text{
+            color: $color-footer-text;
+            font-size: $font-size-primary;
+        }
+    }
+}
