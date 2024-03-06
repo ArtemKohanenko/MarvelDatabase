@@ -6,7 +6,7 @@ const comics: IComic[] = [
         name: 'Comic 1',
         description: 'Some description.',
         picture: 'src/assets/comic_example.jpg',
-        charactersLink: [
+        charactersLinks: [
             {
                 name: 'Hero 1',
                 link: 'https://www.marvel.com/characters/spider-man-peter-parker'
@@ -26,7 +26,7 @@ const comics: IComic[] = [
         name: 'Comic 2',
         description: 'Some description.',
         picture: 'src/assets/comic_example.jpg',
-        charactersLink: [
+        charactersLinks: [
             {
                 name: 'Hero 1',
                 link: 'https://www.marvel.com/characters/spider-man-peter-parker'
@@ -46,7 +46,7 @@ const comics: IComic[] = [
         name: 'Comic 3',
         description: 'Some description.',
         picture: 'src/assets/comic_example.jpg',
-        charactersLink: [
+        charactersLinks: [
             {
                 name: 'Hero 1',
                 link: 'https://www.marvel.com/characters/spider-man-peter-parker'
@@ -66,7 +66,7 @@ const comics: IComic[] = [
         name: 'Comic 4',
         description: 'Some description.',
         picture: 'src/assets/comic_example.jpg',
-        charactersLink: [
+        charactersLinks: [
             {
                 name: 'Hero 1',
                 link: 'https://www.marvel.com/characters/spider-man-peter-parker'
@@ -86,7 +86,7 @@ const comics: IComic[] = [
         name: 'Comic 5',
         description: 'Some description.',
         picture: 'src/assets/comic_example.jpg',
-        charactersLink: [
+        charactersLinks: [
             {
                 name: 'Hero 1',
                 link: 'https://www.marvel.com/characters/spider-man-peter-parker'
@@ -106,7 +106,7 @@ const comics: IComic[] = [
         name: 'Comic 6',
         description: 'Some description.',
         picture: 'src/assets/comic_example.jpg',
-        charactersLink: [
+        charactersLinks: [
             {
                 name: 'Hero 1',
                 link: 'https://www.marvel.com/characters/spider-man-peter-parker'
@@ -126,7 +126,7 @@ const comics: IComic[] = [
         name: 'Comic 7',
         description: 'Some description.',
         picture: 'src/assets/comic_example.jpg',
-        charactersLink: [
+        charactersLinks: [
             {
                 name: 'Hero 1',
                 link: 'https://www.marvel.com/characters/spider-man-peter-parker'
@@ -146,7 +146,7 @@ const comics: IComic[] = [
         name: 'Comic 8',
         description: 'Some description.',
         picture: 'src/assets/comic_example.jpg',
-        charactersLink: [
+        charactersLinks: [
             {
                 name: 'Hero 1',
                 link: 'https://www.marvel.com/characters/spider-man-peter-parker'
@@ -166,7 +166,7 @@ const comics: IComic[] = [
         name: 'Comic 9',
         description: 'Some description.',
         picture: 'src/assets/comic_example.jpg',
-        charactersLink: [
+        charactersLinks: [
             {
                 name: 'Hero 1',
                 link: 'https://www.marvel.com/characters/spider-man-peter-parker'
