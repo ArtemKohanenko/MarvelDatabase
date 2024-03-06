@@ -19,7 +19,10 @@ function App() {
         },
         {
           path: "/characters",
-          element: <Characters/>,
+          children: [
+            { index: true, element: <Characters/>},
+            { path: '/characters/:id', element: <}
+          ]
         },
         {
           path: "/comics",
