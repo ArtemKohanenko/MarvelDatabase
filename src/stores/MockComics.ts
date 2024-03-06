@@ -25,7 +25,7 @@ const comics: IComic[] = [
         id: '2',
         name: 'Comic 2',
         description: 'Some description.',
-        picture: 'src/assets/picture_example.jpg',
+        picture: 'src/assets/comic_example.jpg',
         charactersLink: [
             {
                 name: 'Hero 1',
@@ -45,7 +45,7 @@ const comics: IComic[] = [
         id: '3',
         name: 'Comic 3',
         description: 'Some description.',
-        picture: 'src/assets/picture_example.jpg',
+        picture: 'src/assets/comic_example.jpg',
         charactersLink: [
             {
                 name: 'Hero 1',
@@ -65,7 +65,7 @@ const comics: IComic[] = [
         id: '4',
         name: 'Comic 4',
         description: 'Some description.',
-        picture: 'src/assets/picture_example.jpg',
+        picture: 'src/assets/comic_example.jpg',
         charactersLink: [
             {
                 name: 'Hero 1',
@@ -85,7 +85,7 @@ const comics: IComic[] = [
         id: '5',
         name: 'Comic 5',
         description: 'Some description.',
-        picture: 'src/assets/picture_example.jpg',
+        picture: 'src/assets/comic_example.jpg',
         charactersLink: [
             {
                 name: 'Hero 1',
@@ -105,7 +105,7 @@ const comics: IComic[] = [
         id: '6',
         name: 'Comic 6',
         description: 'Some description.',
-        picture: 'src/assets/picture_example.jpg',
+        picture: 'src/assets/comic_example.jpg',
         charactersLink: [
             {
                 name: 'Hero 1',
@@ -125,7 +125,7 @@ const comics: IComic[] = [
         id: '7',
         name: 'Comic 7',
         description: 'Some description.',
-        picture: 'src/assets/picture_example.jpg',
+        picture: 'src/assets/comic_example.jpg',
         charactersLink: [
             {
                 name: 'Hero 1',
@@ -145,7 +145,7 @@ const comics: IComic[] = [
         id: '8',
         name: 'Comic 8',
         description: 'Some description.',
-        picture: 'src/assets/picture_example.jpg',
+        picture: 'src/assets/comic_example.jpg',
         charactersLink: [
             {
                 name: 'Hero 1',
@@ -165,7 +165,7 @@ const comics: IComic[] = [
         id: '9',
         name: 'Comic 9',
         description: 'Some description.',
-        picture: 'src/assets/picture_example.jpg',
+        picture: 'src/assets/comic_example.jpg',
         charactersLink: [
             {
                 name: 'Hero 1',
