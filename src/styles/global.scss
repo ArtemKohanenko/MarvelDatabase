@@ -1,6 +1,7 @@
 html {
     background-color: $color-background;
     font-family: $font-primary;
+    color: $color-primary-text;
     height: 100%;
 }
 
@@ -15,5 +16,6 @@ body {
 
 main {
     display: flex;
+    flex-direction: column;
     flex-grow: 1;
 }
