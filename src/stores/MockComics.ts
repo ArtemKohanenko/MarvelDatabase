@@ -1,6 +1,6 @@
 import { IComic } from "../types/comic";
 
-const characters: IComic[] = [
+const comics: IComic[] = [
     {
         id: '1',
         name: 'Comic 1',
@@ -183,4 +183,4 @@ const characters: IComic[] = [
     },
 ]
 
-export default characters;
+export default comics;
