@@ -1,9 +1,69 @@
+import Card from '../../components/Card/Card';
+import CardsList from '../../components/CardsList/CardsList';
 import CharactersList from '../../components/CharactersList/CharactersList';
+import { ICharacter } from '../../types/character';
 import classes from './Characters.module.scss'
 
 const Characters = () => {
 
     const counter = 1562
+
+    const characters: ICharacter[] = [
+        {
+            id: '123',
+            name: 'Spider-Man',
+            description: 'Some description.',
+            picture: 'src/assets/picture_example.jpg'
+        },
+        {
+            id: '123',
+            name: 'Spider-Man',
+            description: 'Some description.',
+            picture: 'src/assets/picture_example.jpg'
+        },
+        {
+            id: '123',
+            name: 'Spider-Man',
+            description: 'Some description.',
+            picture: 'src/assets/picture_example.jpg'
+        },
+        {
+            id: '123',
+            name: 'Spider-Man',
+            description: 'Some description.',
+            picture: 'src/assets/picture_example.jpg'
+        },
+        {
+            id: '123',
+            name: 'Spider-Man',
+            description: 'Some description.',
+            picture: 'src/assets/picture_example.jpg'
+        },
+        {
+            id: '123',
+            name: 'Spider-Man',
+            description: 'Some description.',
+            picture: 'src/assets/picture_example.jpg'
+        },
+        {
+            id: '123',
+            name: 'Spider-Man',
+            description: 'Some description.',
+            picture: 'src/assets/picture_example.jpg'
+        },
+        {
+            id: '123',
+            name: 'Spider-Man',
+            description: 'Some description.',
+            picture: 'src/assets/picture_example.jpg'
+        },
+        {
+            id: '123',
+            name: 'Spider-Man',
+            description: 'Some description.',
+            picture: 'src/assets/picture_example.jpg'
+        },
+]
 
     return (
         <>
@@ -18,7 +78,10 @@ const Characters = () => {
                         <button className={classes.searchButton}>SEARCH</button>
                     </div>
                 </div>
+                <CardsList list={characters}/>
             </div>
+
+            
         </>
     )
 }
