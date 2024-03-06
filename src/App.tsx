@@ -4,6 +4,7 @@ import Layout from "./components/Layout/Layout";
 import Characters from "./routes/Characters/Characters";
 import Comics from "./routes/Comics/Comics";
 import NoMatch from "./routes/NoMatch/NoMatch";
+import ComicDetail from "./routes/ComicDetail/ComicDetail";
 import CharacterDetail from "./routes/CharacterDetail/CharacterDetail";
 
 function App() {
@@ -27,7 +28,10 @@ function App() {
         },
         {
           path: "/comics",
-          element: <Comics/>,
+          children: [
+            { index: true, element: <Comics/>},
+            { path: '/comics/:id', element: <ComicDetail/>}
+          ]
         },
         { path: "*", element: <NoMatch /> },
       ],

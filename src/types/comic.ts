@@ -6,5 +6,5 @@ interface CharacterLink {
 }
 
 export interface IComic extends IListable {
-    charactersLink: CharacterLink[]
+    charactersLinks: CharacterLink[]
 }
