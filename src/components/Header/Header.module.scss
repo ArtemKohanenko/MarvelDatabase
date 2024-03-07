@@ -24,12 +24,14 @@
             color: $color-tab-text;
             font-size: $font-size-primary;
             font-weight: 600;
+            font-family: $font-secondary;
         }
         .linkActive {
             text-decoration: underline;
             color: $color-tab-text;
             font-size: $font-size-primary;
             font-weight: 600;
+            font-family: $font-secondary;
         }
     }
 }
