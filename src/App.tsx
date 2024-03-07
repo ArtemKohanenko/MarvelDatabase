@@ -4,7 +4,7 @@ import Layout from "./components/Layout/Layout";
 import Characters from "./routes/Characters/Characters";
 import Comics from "./routes/Comics/Comics";
 import NoMatch from "./routes/NoMatch/NoMatch";
-import CharacterDetail from "./components/CharacterDetail/CharacterDetail";
+import CharacterDetail from "./routes/CharacterDetail/CharacterDetail";
 
 function App() {
 
