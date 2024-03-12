@@ -1,6 +1,6 @@
 export interface IListable {
-    id: string;
-    name: string;
-    description: string;
-    picture: string;
+  id: string;
+  name: string;
+  description: string;
+  picture: string;
 }
