@@ -1,37 +1,37 @@
-@import 'src/styles';
+@import "src/styles";
 
 .container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  background-color: $color-header-background;
+  padding: 0 20px;
+
+  .logo {
+    height: 50px;
+  }
+
+  .links {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    height: 80px;
-    background-color: $color-header-background;
-    padding: 0 20px;
+    gap: 10px;
+    list-style-type: none;
 
-    .logo {
-        height: 50px;
+    .link {
+      text-decoration: none;
+      color: $color-tab-text;
+      font-size: $font-size-primary;
+      font-weight: 600;
+      font-family: $font-secondary;
     }
-
-    .links {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        list-style-type: none;
-
-        .link {
-            text-decoration: none;
-            color: $color-tab-text;
-            font-size: $font-size-primary;
-            font-weight: 600;
-            font-family: $font-secondary;
-        }
-        .linkActive {
-            text-decoration: underline;
-            color: $color-tab-text;
-            font-size: $font-size-primary;
-            font-weight: 600;
-            font-family: $font-secondary;
-        }
+    .linkActive {
+      text-decoration: underline;
+      color: $color-tab-text;
+      font-size: $font-size-primary;
+      font-weight: 600;
+      font-family: $font-secondary;
     }
+  }
 }

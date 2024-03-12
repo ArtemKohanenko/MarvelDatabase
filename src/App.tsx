@@ -1,5 +1,4 @@
 import { Navigate, RouteObject, useRoutes } from "react-router-dom";
-import Header from "./components/Header/Header"
 import Layout from "./components/Layout/Layout";
 import Characters from "./routes/Characters/Characters";
 import Comics from "./routes/Comics/Comics";
@@ -8,11 +7,10 @@ import ComicDetail from "./routes/ComicDetail/ComicDetail";
 import CharacterDetail from "./routes/CharacterDetail/CharacterDetail";
 
 function App() {
-
-  let routes: RouteObject[] = [
+  const routes: RouteObject[] = [
     {
       path: "/",
-      element: <Layout/>,
+      element: <Layout />,
       children: [
         {
           index: true,
@@ -22,30 +20,25 @@ function App() {
         {
           path: "/characters",
           children: [
-            { index: true, element: <Characters/>},
-            { path: '/characters/:id', element: <CharacterDetail/>}
-          ]
+            { index: true, element: <Characters /> },
+            { path: "/characters/:id", element: <CharacterDetail /> },
+          ],
         },
         {
           path: "/comics",
           children: [
-            { index: true, element: <Comics/>},
-            { path: '/comics/:id', element: <ComicDetail/>}
-          ]
+            { index: true, element: <Comics /> },
+            { path: "/comics/:id", element: <ComicDetail /> },
+          ],
         },
         { path: "*", element: <NoMatch /> },
       ],
     },
   ];
 
+  const element = useRoutes(routes);
 
-  let element = useRoutes(routes)
-
-  return (
-    <>
-      {element}
-    </>
-  )
+  return <>{element}</>;
 }
 
-export default App
+export default App;

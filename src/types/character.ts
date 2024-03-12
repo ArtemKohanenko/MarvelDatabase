@@ -1,10 +1,10 @@
 import { IListable } from "./IListable";
 
 interface ComicLink {
-    name: string,
-    link: string
+  name: string;
+  link: string;
 }
 
 export interface ICharacter extends IListable {
-    comicsLinks: ComicLink[]
+  comicsLinks: ComicLink[];
 }

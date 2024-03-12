@@ -1,60 +1,59 @@
-@import 'src/styles';
+@import "src/styles";
 
 .container {
-    height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .pictureContainer {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+
+    .picture {
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+      margin-top: -20%;
+    }
+  }
+
+  .textData {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 100px;
+    box-sizing: border-box;
+    padding: 20px;
 
-    .pictureContainer {
-        width: 100%;
-        height: 400px;
-        overflow: hidden;
+    .leftColumn {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
 
-        .picture {
-            object-fit: cover;
-            width: 100%;
-            height: auto;
-            margin-top: -20%;
-        }
+      .name {
+        font-family: $font-secondary;
+        font-size: $font-size-subtitle;
+        color: $color-title-text;
+      }
+
+      .description {
+        color: $color-primary-text;
+      }
     }
 
-    .textData {
-        display: flex;
-        flex-direction: row;
-        gap: 100px;
-        box-sizing: border-box;
-        padding: 20px;
+    .rightColumn {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
 
-        .leftColumn {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+      .title {
+        font-family: $font-secondary;
+        font-size: $font-size-subtitle;
+        color: $color-title-text;
+      }
 
-            .name {
-                font-family: $font-secondary;
-                font-size: $font-size-subtitle;
-                color: $color-title-text;
-            }
-    
-            .description {
-                color: $color-primary-text;
-            }
-        }
-
-        .rightColumn {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-
-            .title {
-                font-family: $font-secondary;
-                font-size: $font-size-subtitle;
-                color: $color-title-text;
-            }
-
-            .link {
-            }
-        }
-        
+      .link {
+      }
     }
+  }
 }
