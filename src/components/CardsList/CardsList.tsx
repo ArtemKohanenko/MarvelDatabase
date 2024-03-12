@@ -6,15 +6,13 @@ const CardsList = (props: { list: IListable[] }) => {
   const list = props.list;
 
   return (
-    <>
-      <div className={classes.container}>
-        {list.map((item) => (
-          <div className={classes.cardSpace}>
-            <Card item={item} />
-          </div>
-        ))}
-      </div>
-    </>
+    <div className={classes.container}>
+      {list.map((item) => (
+        <div className={classes.cardSpace}>
+          <Card item={item} />
+        </div>
+      ))}
+    </div>
   );
 };
 

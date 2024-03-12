@@ -12,17 +12,15 @@ const Card = (props: { item: IListable }) => {
   };
 
   return (
-    <>
-      <div className={classes.container} onClick={clickHandler}>
-        <div className={classes.pictureContainer}>
-          <img src={item.picture} className={classes.picture}></img>
-        </div>
-        <div className={classes.textData}>
-          <span className={classes.name}>{item.name}</span>
-          <p className={classes.description}>{item.description}</p>
-        </div>
+    <div className={classes.container} onClick={clickHandler}>
+      <div className={classes.pictureContainer}>
+        <img src={item.picture} className={classes.picture}></img>
       </div>
-    </>
+      <div className={classes.textData}>
+        <span className={classes.name}>{item.name}</span>
+        <p className={classes.description}>{item.description}</p>
+      </div>
+    </div>
   );
 };
 

@@ -5,17 +5,15 @@ import classes from "./Layout.module.scss";
 
 const Layout = () => {
   return (
-    <>
-      <div className={classes.wrapper}>
-        <Header />
+    <div className={classes.wrapper}>
+      <Header />
 
-        <main>
-          <Outlet />
-        </main>
+      <main>
+        <Outlet />
+      </main>
 
-        <Footer />
-      </div>
-    </>
+      <Footer />
+    </div>
   );
 };
 
