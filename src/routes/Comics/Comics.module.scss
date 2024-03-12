@@ -30,29 +30,5 @@
         font-weight: 700;
       }
     }
-
-    .fieldContainer {
-      display: flex;
-      gap: 20px;
-      height: 28px;
-      width: 100%;
-
-      .searchField {
-        height: 100%;
-        width: 100%;
-        border-radius: 0;
-        border: 1px solid $color-subtitle-text;
-        color: $color-subtitle-text;
-        box-sizing: border-box;
-      }
-
-      .searchButton {
-        height: 100%;
-        width: 200px;
-        background-color: $color-button;
-        color: $color-secondary-text;
-        border: none;
-      }
-    }
   }
 }
