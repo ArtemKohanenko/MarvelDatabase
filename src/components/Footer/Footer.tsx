@@ -8,10 +8,7 @@ const Footer = () => {
     <footer className={classes.container}>
       <div className={classes.leftBlock}>
         <div>
-          <img
-            className={classes.logo}
-            src="src/assets/Marvel_Logo.svg"
-          ></img>
+          <img className={classes.logo} src="src/assets/Marvel_Logo.svg"></img>
         </div>
         <span className={classes.text}>
           Data provided by Marvel. @{year} MARVEL
