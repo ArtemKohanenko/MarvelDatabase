@@ -1,0 +1,42 @@
+@import "src/styles";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 200px;
+  border: 1px solid $color-subtitle-text;
+
+  .pictureContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+
+    .picture {
+      width: 150%;
+      height: 150%;
+      object-fit: cover;
+    }
+  }
+
+  .textData {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+
+    .name {
+      font-weight: 700;
+      color: $color-title-text-2;
+      font-size: $font-size-subtitle;
+    }
+
+    .description {
+      color: $color-subtitle-text;
+      margin: 0;
+    }
+  }
+}
