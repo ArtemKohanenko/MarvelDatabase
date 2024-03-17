@@ -3,4 +3,9 @@ export interface IListable {
   name: string;
   description: string;
   picture: string;
+
+  thumbnail: {
+    path: string,
+    extention: string
+  }
 }
