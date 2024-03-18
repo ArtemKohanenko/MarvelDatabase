@@ -6,6 +6,6 @@ export interface IListable {
 
   thumbnail: {
     path: string,
-    extention: string
+    extension: string
   }
 }

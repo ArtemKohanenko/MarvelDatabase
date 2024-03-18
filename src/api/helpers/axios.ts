@@ -5,10 +5,9 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((request) => {
-    request.params = {
-      apikey: import.meta.env.VITE_PUBLIC_API_KEY,
-      ts: Date.now()
-    }
+    request.params.apikey = import.meta.env.VITE_PUBLIC_API_KEY,
+    request.params.ts = Date.now()
+    
     return request;
 });
 

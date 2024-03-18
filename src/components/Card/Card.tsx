@@ -4,6 +4,8 @@ import { IListable } from "../../types/IListable";
 
 const Card = (props: { item: IListable }) => {
   const item = props.item;
+  const pictureURI = item.thumbnail.path + '.' + item.thumbnail.extension;
+  console.log(pictureURI)
 
   const navigate = useNavigate();
 
@@ -14,7 +16,7 @@ const Card = (props: { item: IListable }) => {
   return (
     <div className={classes.container} onClick={clickHandler}>
       <div className={classes.pictureContainer}>
-        <img src={item.picture} className={classes.picture}></img>
+        <img src={pictureURI} className={classes.picture}></img>
       </div>
       <div className={classes.textData}>
         <span className={classes.name}>{item.name}</span>
