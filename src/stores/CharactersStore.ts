@@ -20,7 +20,7 @@ class CharacetrsStore {
     loadCharacters = async (): Promise<void> => {
       try {
         this.loading = true;
-        const { data } = await getCharacters({limit: 10});
+        const { data } = await getCharacters({limit: 5});
         this.characters = data.data.results;
         this.amount = data.data.total;
       } catch (error) {

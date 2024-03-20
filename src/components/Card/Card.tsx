@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import classes from "./Card.module.scss";
 import { IListable } from "../../types/IListable";
+import { shortText } from "../../utils/cardListUtils";
 
 const Card = (props: { item: IListable }) => {
   const item = props.item;
   const pictureURI = item.thumbnail.path + '.' + item.thumbnail.extension;
-  console.log(pictureURI)
+  const maxSymbols = 128;
+  const printedDescription = item.description.length < 128
+    ? item.description
+    : shortText(item.description, maxSymbols);
 
   const navigate = useNavigate();
 
@@ -20,7 +24,7 @@ const Card = (props: { item: IListable }) => {
       </div>
       <div className={classes.textData}>
         <span className={classes.name}>{item.name}</span>
-        <p className={classes.description}>{item.description}</p>
+        <p className={classes.description}>{printedDescription}</p>
       </div>
     </div>
   );
