@@ -14,7 +14,7 @@ const Card = (props: { item: IListable }) => {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    navigate(item.id);
+    navigate(item.id.toString());
   };
 
   return (

@@ -1,27 +1,34 @@
 import { useParams } from "react-router-dom";
 import classes from "./CharacterDetail.module.scss";
 import characetrsStore from "../../stores/CharactersStore";
+import { useEffect } from "react";
+import { observer } from "mobx-react-lite";
 
 const CharacterDetail = () => {
   const { id } = useParams();
-  const { getCharacterById } = characetrsStore;
+  const { selectedCharacter, getCharacterById } = characetrsStore;
+  const pictureURI = selectedCharacter?.thumbnail.path + '.' + selectedCharacter?.thumbnail.extension;
 
-  const character = getCharacterById(id);
+  useEffect(() => {
+    if (id) {
+      getCharacterById(id);
+    }
+  })
 
   return (
     <>
       <div className={classes.container}>
         <div className={classes.pictureContainer}>
-          <img src={character?.picture} className={classes.picture}></img>
+          <img src={pictureURI} className={classes.picture}></img>
         </div>
         <div className={classes.textData}>
           <div className={classes.leftColumn}>
-            <span className={classes.name}>{character?.name}</span>
-            <span className={classes.description}>{character?.description}</span>
+            <span className={classes.name}>{selectedCharacter?.name}</span>
+            <span className={classes.description}>{selectedCharacter?.description}</span>
           </div>
           <div className={classes.rightColumn}>
             <span className={classes.title}>Comics</span>
-            {character?.comics.items.map((item) => (
+            {selectedCharacter?.comics.items.map((item) => (
               <a
                 target="_blank"
                 rel="noopener noreferrer"
@@ -38,4 +45,4 @@ const CharacterDetail = () => {
   );
 };
 
-export default CharacterDetail;
+export default observer(CharacterDetail);

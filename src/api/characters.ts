@@ -18,3 +18,8 @@ export const getCharacters = (params: ICharacterRequest) => axios.get<ICharacter
   {
     params
   });
+
+export const getCharacterById = (id: string) => axios.get<ICharactersResponse>(
+  `/characters/${id}`,
+  {params: {}}
+);

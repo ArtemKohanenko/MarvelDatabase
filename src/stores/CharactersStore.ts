@@ -1,5 +1,5 @@
 import { action, makeObservable, observable } from "mobx";
-import { getCharacters } from "../api/characters";
+import { getCharacterById, getCharacters } from "../api/characters";
 import { ICharacter } from "../types/character";
 
 
@@ -9,6 +9,9 @@ class CharacetrsStore {
 
     @observable
     amount: number = 0;
+
+    @observable
+    selectedCharacter: ICharacter | null = null;
     
     loading: boolean = false;
 
@@ -32,9 +35,17 @@ class CharacetrsStore {
     };
 
     @action
-    getCharacterById = (id?: string): ICharacter | null => {
-      const character = this.characters.find((character) => character.id == id) ?? null;
-      return character
+    getCharacterById = async (id: string): Promise<void> => {
+      try {
+        this.loading = true;
+        const { data } = await getCharacterById(id);
+        this.selectedCharacter = data.data.results[0];
+      } catch (error) {
+        console.error(error);
+      } finally {
+        console.log(this.characters)
+        this.loading = false;
+      }
     };
 }
   
