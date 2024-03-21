@@ -10,7 +10,7 @@ const Comics = () => {
   const { comics, amount, loadComics, currentPage, setCurrentPage } =
     comicsStore;
 
-  const pagesAmount = Math.ceil(amount / pageSize)
+  const pagesAmount = Math.ceil(amount / pageSize);
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {

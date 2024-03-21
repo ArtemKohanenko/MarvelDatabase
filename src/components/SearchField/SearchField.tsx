@@ -10,12 +10,12 @@ const SearchField = (props: {
 
   const [value, setValue] = useState(searchValue);
 
-  let timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
-       setSearchValue(value);
+      setSearchValue(value);
     }, 20000);
   }, [value]);
 

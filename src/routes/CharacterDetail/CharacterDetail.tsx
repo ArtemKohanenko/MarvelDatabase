@@ -3,6 +3,7 @@ import classes from "./CharacterDetail.module.scss";
 import characetrsStore from "../../stores/CharactersStore";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import { externalLinkToLocal } from "../../utils/detailUtils";
 
 const CharacterDetail = () => {
   const { id } = useParams();
@@ -37,7 +38,7 @@ const CharacterDetail = () => {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href={item.resourceURI}
+                href={externalLinkToLocal(item.resourceURI)}
                 className={classes.link}
               >
                 {item.name}

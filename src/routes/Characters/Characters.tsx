@@ -9,7 +9,7 @@ const Characters = () => {
   const pageSize = 18;
   const { characters, amount, loadCharacters, currentPage, setCurrentPage } =
     characetrsStore;
-  const pagesAmount = Math.ceil(amount / pageSize)
+  const pagesAmount = Math.ceil(amount / pageSize);
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
