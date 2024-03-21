@@ -10,6 +10,12 @@ class ComicsStore {
   amount: number = 0;
 
   @observable
+  currentPage: number = 0;
+
+  @observable
+  selectedCharacter: IComic | null = null;
+
+  @observable
   selectedComic: IComic | null = null;
 
   loading: boolean = false;
@@ -19,10 +25,10 @@ class ComicsStore {
   }
 
   @action
-  loadComics = async (): Promise<void> => {
+  loadComics = async (offset: number, limit: number): Promise<void> => {
     try {
       this.loading = true;
-      const { data } = await getComics({ limit: 5 });
+      const { data } = await getComics({ limit, offset });
       this.comics = data.data.results;
       console.log(this.comics);
       this.amount = data.data.total;
@@ -44,6 +50,11 @@ class ComicsStore {
     } finally {
       this.loading = false;
     }
+  };
+
+  @action
+  setCurrentPage = (currentPage: number): void => {
+    this.currentPage = currentPage;
   };
 }
 

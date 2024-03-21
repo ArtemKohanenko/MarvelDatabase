@@ -6,11 +6,13 @@ import classes from "./Comics.module.scss";
 import { useEffect } from "react";
 
 const Comics = () => {
-  const { amount, comics, loadComics } = comicsStore;
+  const pageSize = 18;
+  const { comics, amount, loadComics, currentPage, setCurrentPage } =
+    comicsStore;
 
   useEffect(() => {
-    loadComics();
-  }, []);
+    loadComics(currentPage * pageSize, pageSize);
+  }, [currentPage]);
 
   return (
     <>
@@ -22,7 +24,12 @@ const Comics = () => {
           </div>
           <SearchField />
         </div>
-        <CardsList list={comics} />
+        <CardsList
+          list={comics}
+          amount={amount}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </>
   );

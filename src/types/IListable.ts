@@ -2,7 +2,7 @@ export interface IListable {
   id: string;
   name?: string;
   title?: string;
-  description: string;
+  description?: string;
   picture: string;
 
   thumbnail: {

@@ -8,10 +8,15 @@ const Card = (props: { item: IListable }) => {
   const pictureURI = item.thumbnail.path + "." + item.thumbnail.extension;
   const cardTitle = item.name ? item.name : item.title;
   const maxSymbols = 128;
-  const printedDescription =
-    item.description.length < 128
-      ? item.description
-      : shortText(item.description, maxSymbols);
+
+  let printedDescription = "";
+
+  if (item.description) {
+    printedDescription =
+      item.description.length < 128
+        ? item.description
+        : shortText(item.description, maxSymbols);
+  }
 
   const navigate = useNavigate();
 
