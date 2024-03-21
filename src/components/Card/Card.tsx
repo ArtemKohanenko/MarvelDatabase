@@ -5,11 +5,12 @@ import { shortText } from "../../utils/cardListUtils";
 
 const Card = (props: { item: IListable }) => {
   const item = props.item;
-  const pictureURI = item.thumbnail.path + '.' + item.thumbnail.extension;
+  const pictureURI = item.thumbnail.path + "." + item.thumbnail.extension;
   const maxSymbols = 128;
-  const printedDescription = item.description.length < 128
-    ? item.description
-    : shortText(item.description, maxSymbols);
+  const printedDescription =
+    item.description.length < 128
+      ? item.description
+      : shortText(item.description, maxSymbols);
 
   const navigate = useNavigate();
 

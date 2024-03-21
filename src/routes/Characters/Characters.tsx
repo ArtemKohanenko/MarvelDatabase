@@ -6,12 +6,11 @@ import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 
 const Characters = () => {
-
   const { characters, amount, loadCharacters } = characetrsStore;
 
   useEffect(() => {
     loadCharacters();
-  }, [])
+  }, []);
 
   return (
     <>

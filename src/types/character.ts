@@ -7,8 +7,8 @@ interface ComicLink {
 
 export interface ICharacter extends IListable {
   comics: {
-    available: number,
-    collectionURI: string,
-    items: ComicLink[]
-  }
+    available: number;
+    collectionURI: string;
+    items: ComicLink[];
+  };
 }

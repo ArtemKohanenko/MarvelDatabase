@@ -7,13 +7,16 @@ import { observer } from "mobx-react-lite";
 const CharacterDetail = () => {
   const { id } = useParams();
   const { selectedCharacter, getCharacterById } = characetrsStore;
-  const pictureURI = selectedCharacter?.thumbnail.path + '.' + selectedCharacter?.thumbnail.extension;
+  const pictureURI =
+    selectedCharacter?.thumbnail.path +
+    "." +
+    selectedCharacter?.thumbnail.extension;
 
   useEffect(() => {
     if (id) {
       getCharacterById(id);
     }
-  })
+  });
 
   return (
     <>
@@ -24,7 +27,9 @@ const CharacterDetail = () => {
         <div className={classes.textData}>
           <div className={classes.leftColumn}>
             <span className={classes.name}>{selectedCharacter?.name}</span>
-            <span className={classes.description}>{selectedCharacter?.description}</span>
+            <span className={classes.description}>
+              {selectedCharacter?.description}
+            </span>
           </div>
           <div className={classes.rightColumn}>
             <span className={classes.title}>Comics</span>

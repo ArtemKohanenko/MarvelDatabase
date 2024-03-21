@@ -5,7 +5,7 @@ export interface IListable {
   picture: string;
 
   thumbnail: {
-    path: string,
-    extension: string
-  }
+    path: string;
+    extension: string;
+  };
 }

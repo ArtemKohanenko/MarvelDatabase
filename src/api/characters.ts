@@ -1,25 +1,22 @@
-import { ICharacter } from '../types/character';
-import axios from './helpers/axios';
+import { ICharacter } from "../types/character";
+import axios from "./helpers/axios";
 
 interface ICharacterRequest {
-  limit?: number,
-  offset?: number
+  limit?: number;
+  offset?: number;
 }
 
 interface ICharactersResponse {
   data: {
-    total: number,
-    results: ICharacter[]
-  }
+    total: number;
+    results: ICharacter[];
+  };
 }
 
-export const getCharacters = (params: ICharacterRequest) => axios.get<ICharactersResponse>(
-  '/characters',
-  {
-    params
+export const getCharacters = (params: ICharacterRequest) =>
+  axios.get<ICharactersResponse>("/characters", {
+    params,
   });
 
-export const getCharacterById = (id: string) => axios.get<ICharactersResponse>(
-  `/characters/${id}`,
-  {params: {}}
-);
+export const getCharacterById = (id: string) =>
+  axios.get<ICharactersResponse>(`/characters/${id}`, { params: {} });

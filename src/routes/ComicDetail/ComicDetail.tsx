@@ -8,7 +8,7 @@ const ComicDetail = () => {
     <>
       <div className={classes.container}>
         <div className={classes.pictureContainer}>
-          <img src='' className={classes.picture}></img>
+          <img src="" className={classes.picture}></img>
         </div>
         <div className={classes.textData}>
           <div className={classes.leftColumn}>
