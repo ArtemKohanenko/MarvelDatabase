@@ -1,11 +1,13 @@
 import classes from "./Pagination.module.scss";
-import characetrsStore from "../../stores/CharactersStore";
 
-const Pagination = (props: {amount: number, currentPage: number, setCurrentPage:(page: number)=>void}) => {
+const Pagination = (props: {
+  amount: number;
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
+}) => {
   const amount = props.amount;
   const currentPage = props.currentPage;
   const setCurrentPage = props.setCurrentPage;
-  // const { amount, currentPage, setCurrentPage } = characetrsStore;
 
   const limit = 6;
   const bottomLimit = currentPage > limit ? currentPage - limit + 1 : 1;
