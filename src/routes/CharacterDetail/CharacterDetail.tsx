@@ -1,39 +1,31 @@
 import { useParams } from "react-router-dom";
 import classes from "./CharacterDetail.module.scss";
-import characters from "../../stores/MockCharacters";
-import { ICharacter } from "../../types/character";
+import characetrsStore from "../../stores/CharactersStore";
 
 const CharacterDetail = () => {
   const { id } = useParams();
+  const { getCharacterById } = characetrsStore;
 
-  const emptyCharacter: ICharacter = {
-    id: "",
-    name: "",
-    description: "",
-    picture: "",
-    comicsLinks: [],
-  };
-
-  const character = characters.find((item) => item.id == id) ?? emptyCharacter;
+  const character = getCharacterById(id);
 
   return (
     <>
       <div className={classes.container}>
         <div className={classes.pictureContainer}>
-          <img src={character.picture} className={classes.picture}></img>
+          <img src={character?.picture} className={classes.picture}></img>
         </div>
         <div className={classes.textData}>
           <div className={classes.leftColumn}>
-            <span className={classes.name}>{character.name}</span>
-            <span className={classes.description}>{character.description}</span>
+            <span className={classes.name}>{character?.name}</span>
+            <span className={classes.description}>{character?.description}</span>
           </div>
           <div className={classes.rightColumn}>
             <span className={classes.title}>Comics</span>
-            {character.comicsLinks.map((item) => (
+            {character?.comics.items.map((item) => (
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href={item.link}
+                href={item.resourceURI}
                 className={classes.link}
               >
                 {item.name}

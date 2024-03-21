@@ -30,6 +30,12 @@ class CharacetrsStore {
         this.loading = false;
       }
     };
+
+    @action
+    getCharacterById = (id?: string): ICharacter | null => {
+      const character = this.characters.find((character) => character.id == id) ?? null;
+      return character
+    };
 }
   
 const characetrsStore = new CharacetrsStore();
