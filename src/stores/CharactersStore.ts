@@ -10,6 +10,9 @@ class CharacetrsStore {
   amount: number = 0;
 
   @observable
+  currentPage: number = 0;
+
+  @observable
   selectedCharacter: ICharacter | null = null;
 
   loading: boolean = false;
@@ -19,10 +22,10 @@ class CharacetrsStore {
   }
 
   @action
-  loadCharacters = async (): Promise<void> => {
+  loadCharacters = async (offset: number, limit: number): Promise<void> => {
     try {
       this.loading = true;
-      const { data } = await getCharacters({ limit: 5 });
+      const { data } = await getCharacters({ limit, offset });
       this.characters = data.data.results;
       this.amount = data.data.total;
     } catch (error) {
@@ -45,6 +48,11 @@ class CharacetrsStore {
       console.log(this.characters);
       this.loading = false;
     }
+  };
+
+  @action
+  setCurrentPage = (currentPage: number): void => {
+    this.currentPage = currentPage;
   };
 }
 

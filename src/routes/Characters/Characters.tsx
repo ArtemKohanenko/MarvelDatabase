@@ -6,11 +6,12 @@ import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 
 const Characters = () => {
-  const { characters, amount, loadCharacters } = characetrsStore;
+  const pageSize = 18;
+  const { characters, amount, loadCharacters, currentPage } = characetrsStore;
 
   useEffect(() => {
-    loadCharacters();
-  }, []);
+    loadCharacters(currentPage * pageSize, pageSize);
+  }, [currentPage]);
 
   return (
     <>
@@ -22,7 +23,7 @@ const Characters = () => {
           </div>
           <SearchField />
         </div>
-        <CardsList list={characters} />
+        <CardsList list={characters} pageSize={pageSize} />
       </div>
     </>
   );
