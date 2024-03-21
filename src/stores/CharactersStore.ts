@@ -22,16 +22,27 @@ class CharacetrsStore {
   }
 
   @action
-  loadCharacters = async (offset: number, limit: number): Promise<void> => {
+  loadCharacters = async (
+    offset?: number,
+    limit?: number,
+    nameStartsWith?: string,
+  ): Promise<void> => {
     try {
       this.loading = true;
-      const { data } = await getCharacters({ limit, offset });
+      let params = { limit, offset };
+
+      if (nameStartsWith) {
+        params = Object.assign(params, {
+          nameStartsWith,
+        });
+      }
+
+      const { data } = await getCharacters(params);
       this.characters = data.data.results;
       this.amount = data.data.total;
     } catch (error) {
       console.error(error);
     } finally {
-      console.log(this.characters);
       this.loading = false;
     }
   };
