@@ -16,7 +16,7 @@ const CharacterDetail = () => {
     if (id) {
       getCharacterById(id);
     }
-  });
+  }, []);
 
   return (
     <>
