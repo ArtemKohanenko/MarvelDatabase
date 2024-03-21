@@ -4,6 +4,7 @@ import axios from "./helpers/axios";
 interface IComicsRequest {
   limit?: number;
   offset?: number;
+  titleStartsWith?: string;
 }
 
 interface IComicsResponse {
