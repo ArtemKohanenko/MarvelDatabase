@@ -25,7 +25,11 @@ class ComicsStore {
   }
 
   @action
-  loadComics = async (offset: number, limit: number, titleStartsWith?: string,): Promise<void> => {
+  loadComics = async (
+    offset: number,
+    limit: number,
+    titleStartsWith?: string,
+  ): Promise<void> => {
     try {
       this.loading = true;
       let params = { limit, offset };
