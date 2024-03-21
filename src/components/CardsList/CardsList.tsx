@@ -5,12 +5,12 @@ import Pagination from "../Pagination/Pagination";
 
 const CardsList = (props: {
   list: IListable[];
-  amount: number;
+  pagesAmount: number;
   currentPage: number;
   setCurrentPage: (page: number) => void;
 }) => {
   const list = props.list;
-  const amount = props.amount;
+  const pagesAmount = props.pagesAmount;
   const currentPage = props.currentPage;
   const setCurrentPage = props.setCurrentPage;
 
@@ -25,7 +25,7 @@ const CardsList = (props: {
       </div>
       <div className={classes.pagination}>
         <Pagination
-          amount={amount}
+          pagesAmount={pagesAmount}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
