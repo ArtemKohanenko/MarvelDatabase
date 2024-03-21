@@ -1,9 +1,16 @@
+import { observer } from "mobx-react-lite";
 import CardsList from "../../components/CardsList/CardsList";
 import SearchField from "../../components/SearchField/SearchField";
+import comicsStore from "../../stores/ComicsStore";
 import classes from "./Comics.module.scss";
+import { useEffect } from "react";
 
 const Comics = () => {
-  const counter = 1562;
+  const { amount, comics, loadComics } = comicsStore;
+
+  useEffect(() => {
+    loadComics();
+  }, []);
 
   return (
     <>
@@ -11,14 +18,14 @@ const Comics = () => {
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
             <span className={classes.title}>Comics</span>
-            <span className={classes.counter}>({counter})</span>
+            <span className={classes.counter}>({amount})</span>
           </div>
           <SearchField />
         </div>
-        <CardsList list={[]} />
+        <CardsList list={comics} />
       </div>
     </>
   );
 };
 
-export default Comics;
+export default observer(Comics);
