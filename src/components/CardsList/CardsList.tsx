@@ -3,8 +3,11 @@ import { IListable } from "../../types/IListable";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
 
-const CardsList = (props: { list: IListable[]; pageSize: number }) => {
+const CardsList = (props: { list: IListable[], amount: number, currentPage: number, setCurrentPage:(page: number)=>void} ) => {
   const list = props.list;
+  const amount = props.amount;
+  const currentPage = props.currentPage;
+  const setCurrentPage = props.setCurrentPage;
 
   return (
     <div className={classes.wrapper}>
@@ -16,7 +19,7 @@ const CardsList = (props: { list: IListable[]; pageSize: number }) => {
         ))}
       </div>
       <div className={classes.pagination}>
-        <Pagination />
+        <Pagination amount={amount} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
       </div>
     </div>
   );
