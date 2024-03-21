@@ -9,6 +9,7 @@ const Characters = () => {
   const pageSize = 18;
   const { characters, amount, loadCharacters, currentPage, setCurrentPage } =
     characetrsStore;
+  const pagesAmount = Math.ceil(amount / pageSize)
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
@@ -25,12 +26,15 @@ const Characters = () => {
           </div>
           <SearchField
             searchValue={searchValue}
-            setSearchValue={setSearchValue}
+            setSearchValue={(value) => {
+              setSearchValue(value);
+              setCurrentPage(0);
+            }}
           />
         </div>
         <CardsList
           list={characters}
-          amount={amount}
+          pagesAmount={pagesAmount}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />

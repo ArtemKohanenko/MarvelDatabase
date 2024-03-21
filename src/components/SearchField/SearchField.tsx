@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classes from "./SearchField.module.scss";
 
 const SearchField = (props: {
@@ -10,16 +10,17 @@ const SearchField = (props: {
 
   const [value, setValue] = useState(searchValue);
 
-  let timeoutId: NodeJS.Timeout | undefined;
+  let timeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      setSearchValue(value);
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+       setSearchValue(value);
     }, 3000);
   }, [value]);
 
   const submitHandler = () => {
+    clearTimeout(timeoutRef.current);
     setSearchValue(value);
   };
 
@@ -36,7 +37,7 @@ const SearchField = (props: {
         value={value}
         onChange={changeHandle}
       ></input>
-      <button className={classes.searchButton} onClick={submitHandler}>
+      <button className={classes.searchButton} onClick={() => submitHandler()}>
         SEARCH
       </button>
     </div>
