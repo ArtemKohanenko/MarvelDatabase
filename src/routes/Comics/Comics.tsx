@@ -1,6 +1,5 @@
 import CardsList from "../../components/CardsList/CardsList";
 import SearchField from "../../components/SearchField/SearchField";
-import comics from "../../stores/MockComics";
 import classes from "./Comics.module.scss";
 
 const Comics = () => {
@@ -16,7 +15,7 @@ const Comics = () => {
           </div>
           <SearchField />
         </div>
-        <CardsList list={comics} />
+        <CardsList list={[]} />
       </div>
     </>
   );
