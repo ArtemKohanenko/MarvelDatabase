@@ -14,7 +14,7 @@ const ComicDetail = () => {
     if (id) {
       getComicById(id);
     }
-  });
+  }, []);
 
   return (
     <>
