@@ -6,6 +6,7 @@ import { shortText } from "../../utils/cardListUtils";
 const Card = (props: { item: IListable }) => {
   const item = props.item;
   const pictureURI = item.thumbnail.path + "." + item.thumbnail.extension;
+  const cardTitle = item.name ? item.name : item.title;
   const maxSymbols = 128;
   const printedDescription =
     item.description.length < 128
@@ -24,7 +25,7 @@ const Card = (props: { item: IListable }) => {
         <img src={pictureURI} className={classes.picture}></img>
       </div>
       <div className={classes.textData}>
-        <span className={classes.name}>{item.name}</span>
+        <span className={classes.name}>{cardTitle}</span>
         <p className={classes.description}>{printedDescription}</p>
       </div>
     </div>
