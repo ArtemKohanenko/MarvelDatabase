@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import classes from "./ComicDetail.module.scss";
 import { useEffect } from "react";
 import comicsStore from "../../stores/ComicsStore";
+import { observer } from "mobx-react-lite";
 
 const ComicDetail = () => {
   const { id } = useParams();
@@ -47,4 +48,4 @@ const ComicDetail = () => {
   );
 };
 
-export default ComicDetail;
+export default observer(ComicDetail);
