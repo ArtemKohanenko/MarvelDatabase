@@ -4,6 +4,7 @@ import axios from "./helpers/axios";
 interface ICharacterRequest {
   limit?: number;
   offset?: number;
+  nameStartsWith?: string;
 }
 
 interface ICharactersResponse {
