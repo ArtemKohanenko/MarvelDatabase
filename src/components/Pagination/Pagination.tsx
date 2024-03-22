@@ -28,6 +28,7 @@ const Pagination = (props: {
       {pageNums.map((item) => (
         <div
           onClick={() => clickHandler(item - 1)}
+          key={item}
           className={`${classes.cell} ${item - 1 == currentPage ? classes.selected : ""}`}
         >
           <span

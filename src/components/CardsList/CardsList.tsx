@@ -18,7 +18,7 @@ const CardsList = (props: {
     <div className={classes.wrapper}>
       <div className={classes.container}>
         {list.map((item) => (
-          <div className={classes.cardSpace}>
+          <div key={item.id} className={classes.cardSpace}>
             <Card item={item} />
           </div>
         ))}
