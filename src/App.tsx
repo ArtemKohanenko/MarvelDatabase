@@ -5,6 +5,8 @@ import Comics from "./routes/Comics/Comics";
 import NoMatch from "./routes/NoMatch/NoMatch";
 import ComicDetail from "./routes/ComicDetail/ComicDetail";
 import CharacterDetail from "./routes/CharacterDetail/CharacterDetail";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const routes: RouteObject[] = [
@@ -38,7 +40,12 @@ function App() {
 
   const element = useRoutes(routes);
 
-  return <>{element}</>;
+  return (
+    <>
+      <ToastContainer />
+      {element}
+    </>
+  );
 }
 
 export default App;
