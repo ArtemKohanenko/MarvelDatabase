@@ -2,12 +2,28 @@ import { useNavigate } from "react-router-dom";
 import classes from "./Card.module.scss";
 import { IListable } from "../../types/IListable";
 import { shortText } from "../../utils/cardListUtils";
+import IconHeartOutline from "../icons/IconHeartOutline/IconHeartOutline";
+import { MouseEventHandler, useState } from "react";
+import IconHeartFilled from "../icons/IconHeartFilled/IconHeartFilled";
 
-const Card = (props: { item: IListable }) => {
+const Card = (props: { item: IListable, isFavourites?: boolean }) => {
   const item = props.item;
+  const isFavourites = props.isFavourites ?? false;
   const pictureURI = item.thumbnail.path + "." + item.thumbnail.extension;
   const cardTitle = item.name ? item.name : item.title;
+  
   const maxSymbols = 128;
+  const iconStyle = {
+    fill: '#ed1a3b',
+    width: '50px',
+    height: '50px'
+  }
+  const [isFavouriteButtonHover, setIsFavouriteButtonHover] = useState(false)
+  const [isFavourite, setIsFavourite] = useState();
+
+  const favouriteButtonHoverHandler = () => {
+
+  }
 
   let printedDescription = "";
 
@@ -24,8 +40,26 @@ const Card = (props: { item: IListable }) => {
     navigate(item.id.toString());
   };
 
+  const favouriteClickHandler: MouseEventHandler<HTMLButtonElement> = (event: MouseEvent) => {
+    event.stopPropagation();
+    
+  }
+
   return (
     <div className={classes.container} onClick={clickHandler}>
+      <div className={classes.cover}>
+        <div className={classes.darkness}></div>
+        <button
+          className={classes.favouriteButton}
+          onClick={favouriteClickHandler}
+          onMouseEnter={() => setIsFavouriteButtonHover(true)}
+          onMouseLeave={() => setIsFavouriteButtonHover(false)}>
+            { isFavouriteButtonHover
+              ? <IconHeartFilled styles={iconStyle}/>
+              : <IconHeartOutline styles={iconStyle}/> }
+        </button>
+        
+      </div>
       <div className={classes.pictureContainer}>
         <img src={pictureURI} className={classes.picture}></img>
       </div>
