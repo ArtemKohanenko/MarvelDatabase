@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from "mobx";
+import { action, computed, makeObservable, observable, runInAction } from "mobx";
 import { IComic } from "../types/comic";
 import { getComicById, getComics } from "../api/comics";
 
@@ -8,6 +8,8 @@ class ComicsStore {
 
   @observable
   amount: number = 0;
+
+  pageSize: number = 18;
 
   @observable
   currentPage: number = 0;
@@ -22,6 +24,11 @@ class ComicsStore {
 
   constructor() {
     makeObservable(this);
+  }
+
+  @computed
+  get pagesAmount() {
+    return Math.ceil(this.amount / this.pageSize);
   }
 
   @action
@@ -41,13 +48,16 @@ class ComicsStore {
       }
 
       const { data } = await getComics(params);
-      this.comics = data.data.results;
-      console.log(this.comics);
-      this.amount = data.data.total;
+      runInAction(() => {
+        this.comics = data.data.results;
+        this.amount = data.data.total;
+      });
     } catch (error) {
       console.error(error);
     } finally {
-      this.loading = false;
+      runInAction(() => {
+        this.loading = false;
+      });
     }
   };
 
@@ -56,11 +66,15 @@ class ComicsStore {
     try {
       this.loading = true;
       const { data } = await getComicById(id);
-      this.selectedComic = data.data.results[0];
+      runInAction(() => {
+        this.selectedComic = data.data.results[0];
+      });
     } catch (error) {
       console.error(error);
     } finally {
-      this.loading = false;
+      runInAction(() => {
+        this.loading = false;
+      });
     }
   };
 

@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import classes from "./CharacterDetail.module.scss";
-import characetrsStore from "../../stores/CharactersStore";
+import CharactersStore from "../../stores/CharactersStore";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { externalLinkToLocal } from "../../utils/detailUtils";
 
 const CharacterDetail = () => {
   const { id } = useParams();
-  const { selectedCharacter, getCharacterById } = characetrsStore;
+  const { selectedCharacter, getCharacterById } = CharactersStore;
   const pictureURI =
     selectedCharacter?.thumbnail.path +
     "." +

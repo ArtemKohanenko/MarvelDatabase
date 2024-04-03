@@ -6,11 +6,9 @@ import classes from "./Comics.module.scss";
 import { useEffect, useState } from "react";
 
 const Comics = () => {
-  const pageSize = 18;
-  const { comics, amount, loadComics, currentPage, setCurrentPage } =
+  const { comics, amount, pageSize, pagesAmount, loadComics, currentPage, setCurrentPage } =
     comicsStore;
 
-  const pagesAmount = Math.ceil(amount / pageSize);
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
