@@ -1,13 +1,15 @@
-import { action, makeObservable, observable } from "mobx";
+import { action, computed, makeObservable, observable, runInAction } from "mobx";
 import { getCharacterById, getCharacters } from "../api/characters";
 import { ICharacter } from "../types/character";
 
-class CharacetrsStore {
+class CharactersStore {
   @observable
   characters: ICharacter[] | [] = [];
 
   @observable
   amount: number = 0;
+
+  pageSize: number = 18;
 
   @observable
   currentPage: number = 0;
@@ -19,6 +21,11 @@ class CharacetrsStore {
 
   constructor() {
     makeObservable(this);
+  }
+
+  @computed
+  get pagesAmount() {
+    return Math.ceil(this.amount / this.pageSize);
   }
 
   @action
@@ -38,12 +45,16 @@ class CharacetrsStore {
       }
 
       const { data } = await getCharacters(params);
-      this.characters = data.data.results;
-      this.amount = data.data.total;
+      runInAction(() => {
+        this.characters = data.data.results;
+        this.amount = data.data.total;
+      });
     } catch (error) {
       console.error(error);
     } finally {
-      this.loading = false;
+      runInAction(() => {
+        this.loading = false;
+      });
     }
   };
 
@@ -52,12 +63,15 @@ class CharacetrsStore {
     try {
       this.loading = true;
       const { data } = await getCharacterById(id);
-      this.selectedCharacter = data.data.results[0];
+      runInAction(() => {
+        this.selectedCharacter = data.data.results[0];
+      });
     } catch (error) {
       console.error(error);
     } finally {
-      console.log(this.characters);
-      this.loading = false;
+      runInAction(() => {
+        this.loading = false;
+      });
     }
   };
 
@@ -67,6 +81,6 @@ class CharacetrsStore {
   };
 }
 
-const characetrsStore = new CharacetrsStore();
+const characetrsStore = new CharactersStore();
 
 export default characetrsStore;

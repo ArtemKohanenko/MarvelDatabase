@@ -16,7 +16,7 @@ const SearchField = (props: {
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setSearchValue(value);
-    }, 20000);
+    }, 3000);
   }, [value]);
 
   const submitHandler = () => {
