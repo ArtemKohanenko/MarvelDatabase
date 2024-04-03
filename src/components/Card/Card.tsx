@@ -3,12 +3,15 @@ import classes from "./Card.module.scss";
 import { IListable } from "../../types/IListable";
 import { shortText } from "../../utils/cardListUtils";
 import IconHeartOutline from "../icons/IconHeartOutline/IconHeartOutline";
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import IconHeartFilled from "../icons/IconHeartFilled/IconHeartFilled";
+import { isCharacter } from "../../types/character";
+import { isComic } from "../../types/comic";
 
-const Card = (props: { item: IListable, isFavourites?: boolean }) => {
+const Card = (props: { item: IListable, isFavourite?: boolean }) => {
   const item = props.item;
-  const isFavourites = props.isFavourites ?? false;
+  const isFavouriteDefault = props.isFavourite ?? false;
+  
   const pictureURI = item.thumbnail.path + "." + item.thumbnail.extension;
   const cardTitle = item.name ? item.name : item.title;
   
@@ -19,11 +22,7 @@ const Card = (props: { item: IListable, isFavourites?: boolean }) => {
     height: '50px'
   }
   const [isFavouriteButtonHover, setIsFavouriteButtonHover] = useState(false)
-  const [isFavourite, setIsFavourite] = useState();
-
-  const favouriteButtonHoverHandler = () => {
-
-  }
+  const [isFavourite, setIsFavourite] = useState(isFavouriteDefault);
 
   let printedDescription = "";
 
@@ -40,9 +39,39 @@ const Card = (props: { item: IListable, isFavourites?: boolean }) => {
     navigate(item.id.toString());
   };
 
-  const favouriteClickHandler: MouseEventHandler<HTMLButtonElement> = (event: MouseEvent) => {
+  const favouriteButtonClickHandler: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
-    
+    if (isFavourite) {
+      removeFromFavourites();
+    }
+    else {
+      addToFavourites();
+    }
+    setIsFavourite(!isFavourite);
+  }
+
+  const addToFavourites = () => {
+    if (isCharacter(item)) {
+      const charactersFavourites: IListable[] = JSON.parse(localStorage.getItem("charactersFavourites") ?? "[]");
+      localStorage.setItem('charactersFavourites', JSON.stringify([...charactersFavourites, item]));
+    }
+    else if (isComic(item)) {
+      const comicsFavourites: IListable[] = JSON.parse(localStorage.getItem("comicsFavourites") ?? "[]");
+      localStorage.setItem('comicsFavourites', JSON.stringify([...comicsFavourites, item]));
+    }
+  }
+
+  const removeFromFavourites = () => {
+    if (isCharacter(item)) {
+      const charactersFavourites: IListable[] = JSON.parse(localStorage.getItem("charactersFavourites") ?? "[]");
+      const newList = charactersFavourites.filter(el => el.id != item.id);
+      localStorage.setItem('charactersFavourites', JSON.stringify(newList));
+    }
+    else if (isComic(item)) {
+      const comicsFavourites: IListable[] = JSON.parse(localStorage.getItem("charactersFavourites") ?? "[]");
+      const newList = comicsFavourites.filter(el => el.id != item.id);
+      localStorage.setItem('comicsFavourites', JSON.stringify(newList));
+    }
   }
 
   return (
@@ -51,12 +80,13 @@ const Card = (props: { item: IListable, isFavourites?: boolean }) => {
         <div className={classes.darkness}></div>
         <button
           className={classes.favouriteButton}
-          onClick={favouriteClickHandler}
+          onClick={favouriteButtonClickHandler}
           onMouseEnter={() => setIsFavouriteButtonHover(true)}
           onMouseLeave={() => setIsFavouriteButtonHover(false)}>
-            { isFavouriteButtonHover
+            { isFavouriteButtonHover || isFavourite
               ? <IconHeartFilled styles={iconStyle}/>
-              : <IconHeartOutline styles={iconStyle}/> }
+              : <IconHeartOutline styles={iconStyle}/>
+            }
         </button>
         
       </div>

@@ -10,3 +10,7 @@ export interface IComic extends IListable {
     items: CharacterLink[];
   };
 }
+
+export const isComic = (item: any): item is IComic => {
+  return 'characters' in item && 'items' in item.characters;
+}
