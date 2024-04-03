@@ -1,10 +1,19 @@
+import { observer } from "mobx-react-lite";
 import CardsList from "../../components/CardsList/CardsList";
 import SearchField from "../../components/SearchField/SearchField";
-import comics from "../../stores/MockComics";
+import comicsStore from "../../stores/ComicsStore";
 import classes from "./Comics.module.scss";
+import { useEffect, useState } from "react";
 
 const Comics = () => {
-  const counter = 1562;
+  const { comics, amount, pageSize, pagesAmount, loadComics, currentPage, setCurrentPage } =
+    comicsStore;
+
+  const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    loadComics(currentPage * pageSize, pageSize, searchValue);
+  }, [currentPage, searchValue]);
 
   return (
     <>
@@ -12,14 +21,25 @@ const Comics = () => {
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
             <span className={classes.title}>Comics</span>
-            <span className={classes.counter}>({counter})</span>
+            <span className={classes.counter}>({amount})</span>
           </div>
-          <SearchField />
+          <SearchField
+            searchValue={searchValue}
+            setSearchValue={(value) => {
+              setSearchValue(value);
+              setCurrentPage(0);
+            }}
+          />
         </div>
-        <CardsList list={comics} />
+        <CardsList
+          list={comics}
+          pagesAmount={pagesAmount}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </>
   );
 };
 
-export default Comics;
+export default observer(Comics);
