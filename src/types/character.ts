@@ -12,3 +12,7 @@ export interface ICharacter extends IListable {
     items: ComicLink[];
   };
 }
+
+export const isCharacter = (item: any): item is ICharacter => {
+  return 'comics' in item && 'available' in item.comics && 'collectionURI' in item.comics && 'items' in item.comics;
+}
