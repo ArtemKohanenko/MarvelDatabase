@@ -41,6 +41,7 @@ const Card = (props: { item: IListable, isFavourite?: boolean }) => {
 
   const favouriteButtonClickHandler: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
+    console.log(isFavourite)
     if (isFavourite) {
       removeFromFavourites();
     }
@@ -66,9 +67,11 @@ const Card = (props: { item: IListable, isFavourite?: boolean }) => {
       const charactersFavourites: IListable[] = JSON.parse(localStorage.getItem("charactersFavourites") ?? "[]");
       const newList = charactersFavourites.filter(el => el.id != item.id);
       localStorage.setItem('charactersFavourites', JSON.stringify(newList));
+      console.log('удаляю персонажа, список после удаления:')
+      console.log(newList)
     }
     else if (isComic(item)) {
-      const comicsFavourites: IListable[] = JSON.parse(localStorage.getItem("charactersFavourites") ?? "[]");
+      const comicsFavourites: IListable[] = JSON.parse(localStorage.getItem("comicsFavourites") ?? "[]");
       const newList = comicsFavourites.filter(el => el.id != item.id);
       localStorage.setItem('comicsFavourites', JSON.stringify(newList));
     }

@@ -12,21 +12,15 @@ const CardsList = (props: {
   setCurrentPage: (page: number) => void;
 }) => {
   const list = props.list;
-  let favouriteIds: string[];
   const pagesAmount = props.pagesAmount;
   const currentPage = props.currentPage;
   const setCurrentPage = props.setCurrentPage;
 
-  if (list[0]) {
-    if (isCharacter(list[0])) {           // defining list content type
-      const favouritesList: IListable[] = JSON.parse(localStorage.getItem("charactersFavourites") ?? "[]");
-      favouriteIds = favouritesList.map(item => item.id);
-    }
-    else if (isComic(list[0])) {
-      const favouritesList: IListable[] = JSON.parse(localStorage.getItem("comicsFavourites") ?? "[]");
-      favouriteIds = favouritesList.map(item => item.id);
-    }
-  }
+  const charactersFavourites: IListable[] = JSON.parse(localStorage.getItem("charactersFavourites") ?? "[]");
+  const comicsFavourites: IListable[] = JSON.parse(localStorage.getItem("comicsFavourites") ?? "[]");
+  const charactersIds = charactersFavourites.map(item => item.id);
+  const comicsIds = comicsFavourites.map(item => item.id);
+  const favouriteIds = charactersIds.concat(comicsIds);
   
   return (
     <div className={classes.wrapper}>
