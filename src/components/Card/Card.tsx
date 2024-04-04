@@ -21,6 +21,8 @@ const Card = (props: { item: IListable; isFavourite?: boolean }) => {
     width: "50px",
     height: "50px",
   };
+  const charactersUrl = "characters";
+  const comicsUrl = "comics";
   const [isFavouriteButtonHover, setIsFavouriteButtonHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(isFavouriteDefault);
 
@@ -36,7 +38,13 @@ const Card = (props: { item: IListable; isFavourite?: boolean }) => {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    navigate(item.id.toString());
+    if (isCharacter(item)) {
+      navigate("/" + charactersUrl + "/" + item.id.toString(), {
+        replace: true,
+      });
+    } else if (isComic(item)) {
+      navigate("/" + comicsUrl + "/" + item.id.toString(), { replace: true });
+    }
   };
 
   const favouriteButtonClickHandler: MouseEventHandler<HTMLButtonElement> = (
