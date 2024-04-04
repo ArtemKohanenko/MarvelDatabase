@@ -35,16 +35,13 @@ const CardsList = (props: {
         ))}
       </div>
       <div className={classes.pagination}>
-        {
-          isShowPagination
-            ? <Pagination
-              pagesAmount={pagesAmount}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
-            : null
-        }
-        
+        {isShowPagination ? (
+          <Pagination
+            pagesAmount={pagesAmount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        ) : null}
       </div>
     </div>
   );
