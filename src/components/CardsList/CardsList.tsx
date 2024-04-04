@@ -13,6 +13,7 @@ const CardsList = (props: {
   const pagesAmount = props.pagesAmount;
   const currentPage = props.currentPage;
   const setCurrentPage = props.setCurrentPage;
+  const isShowPagination = pagesAmount > 1;
 
   const charactersFavourites: IListable[] = JSON.parse(
     localStorage.getItem("charactersFavourites") ?? "[]",
@@ -34,11 +35,13 @@ const CardsList = (props: {
         ))}
       </div>
       <div className={classes.pagination}>
-        <Pagination
-          pagesAmount={pagesAmount}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        {isShowPagination ? (
+          <Pagination
+            pagesAmount={pagesAmount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        ) : null}
       </div>
     </div>
   );

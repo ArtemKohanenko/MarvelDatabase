@@ -17,15 +17,13 @@ const Favourites = () => {
     const aName = a.name ? a.name : a.title!;
     const bName = b.name ? b.name : b.title!;
     if (aName < bName) {
-      return -1
-    }
-    else if (aName > bName) {
-      return 1
-    }
-    else {
+      return -1;
+    } else if (aName > bName) {
+      return 1;
+    } else {
       return 0;
     }
-  })
+  });
   const amount = favouritesList.length;
   const pagesAmount = 1;
 
