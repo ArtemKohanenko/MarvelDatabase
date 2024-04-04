@@ -99,18 +99,20 @@ const Card = (props: { item: IListable; isFavourite?: boolean }) => {
     <div className={classes.container} onClick={clickHandler}>
       <div className={classes.cover}>
         <div className={classes.darkness}></div>
-        <button
-          className={classes.favouriteButton}
-          onClick={favouriteButtonClickHandler}
-          onMouseEnter={() => setIsFavouriteButtonHover(true)}
-          onMouseLeave={() => setIsFavouriteButtonHover(false)}
-        >
-          {isFavouriteButtonHover || isFavourite ? (
-            <IconHeartFilled styles={iconStyle} />
-          ) : (
-            <IconHeartOutline styles={iconStyle} />
-          )}
-        </button>
+        <div className={classes.favouriteButtonContainer}>
+          <button
+            className={classes.favouriteButton}
+            onClick={favouriteButtonClickHandler}
+            onMouseEnter={() => setIsFavouriteButtonHover(true)}
+            onMouseLeave={() => setIsFavouriteButtonHover(false)}
+          >
+            {isFavouriteButtonHover || isFavourite ? (
+              <IconHeartFilled styles={iconStyle} />
+            ) : (
+              <IconHeartOutline styles={iconStyle} />
+            )}
+          </button>
+        </div>
       </div>
       <div className={classes.pictureContainer}>
         <img src={pictureURI} className={classes.picture}></img>
