@@ -7,8 +7,8 @@ import classes from "./Header.module.scss";
 const Header = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(location.pathname);
-  const iconColor = '#fbc338';
-  
+  const iconColor = "#fbc338";
+
   return (
     <header className={classes.container}>
       <img className={classes.logo} src="src/assets/Marvel_Logo.svg"></img>
@@ -18,9 +18,9 @@ const Header = () => {
             <NavLink
               to="characters"
               className={() =>
-                activeTab=='/characters' ? classes.linkActive : classes.link
+                activeTab == "/characters" ? classes.linkActive : classes.link
               }
-              onClick={() => setActiveTab('/characters')}
+              onClick={() => setActiveTab("/characters")}
             >
               Characters
             </NavLink>
@@ -29,9 +29,9 @@ const Header = () => {
             <NavLink
               to="comics"
               className={() =>
-                activeTab=='/comics' ? classes.linkActive : classes.link
+                activeTab == "/comics" ? classes.linkActive : classes.link
               }
-              onClick={() => setActiveTab('/comics')}
+              onClick={() => setActiveTab("/comics")}
             >
               Comics
             </NavLink>
@@ -39,13 +39,17 @@ const Header = () => {
           <li>
             <NavLink
               to="favourites"
-              onClick={() => setActiveTab('/favourites')}
+              onClick={() => setActiveTab("/favourites")}
             >
-              {
-                activeTab=='/favourites'
-                ? <IconHeartFilled styles={{width: '40px', height: '40px', fill: iconColor}}/>
-                : <IconHeartOutline styles={{width: '40px', height: '40px', fill: iconColor}}/>
-              }
+              {activeTab == "/favourites" ? (
+                <IconHeartFilled
+                  styles={{ width: "40px", height: "40px", fill: iconColor }}
+                />
+              ) : (
+                <IconHeartOutline
+                  styles={{ width: "40px", height: "40px", fill: iconColor }}
+                />
+              )}
             </NavLink>
           </li>
         </ul>

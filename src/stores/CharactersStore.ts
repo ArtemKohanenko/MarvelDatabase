@@ -1,4 +1,10 @@
-import { action, computed, makeObservable, observable, runInAction } from "mobx";
+import {
+  action,
+  computed,
+  makeObservable,
+  observable,
+  runInAction,
+} from "mobx";
 import { getCharacterById, getCharacters } from "../api/characters";
 import { ICharacter } from "../types/character";
 
