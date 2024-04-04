@@ -6,8 +6,15 @@ import classes from "./Comics.module.scss";
 import { useEffect, useState } from "react";
 
 const Comics = () => {
-  const { comics, amount, pageSize, pagesAmount, loadComics, currentPage, setCurrentPage } =
-    comicsStore;
+  const {
+    comics,
+    amount,
+    pageSize,
+    pagesAmount,
+    loadComics,
+    currentPage,
+    setCurrentPage,
+  } = comicsStore;
 
   const [searchValue, setSearchValue] = useState("");
 

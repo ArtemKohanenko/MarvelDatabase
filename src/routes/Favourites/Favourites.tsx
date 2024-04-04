@@ -6,11 +6,13 @@ import { IListable } from "../../types/IListable";
 const Favourites = () => {
   const pageSize = 18;
   const [currentPage, setCurrentPage] = useState(0);
-  
-  const charactersFavourites: IListable[] = JSON.parse(localStorage.getItem("charactersFavourites") ?? "[]");
-  console.log(charactersFavourites)
-  const comicsFavourites: IListable[] = JSON.parse(localStorage.getItem("comicsFavourites") ?? "[]");
-  console.log(comicsFavourites)
+
+  const charactersFavourites: IListable[] = JSON.parse(
+    localStorage.getItem("charactersFavourites") ?? "[]",
+  );
+  const comicsFavourites: IListable[] = JSON.parse(
+    localStorage.getItem("comicsFavourites") ?? "[]",
+  );
   const favouritesList = charactersFavourites.concat(comicsFavourites);
   const amount = favouritesList.length;
   const pagesAmount = Math.ceil(amount / pageSize);

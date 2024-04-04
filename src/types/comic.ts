@@ -11,6 +11,7 @@ export interface IComic extends IListable {
   };
 }
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export const isComic = (item: any): item is IComic => {
-  return 'characters' in item && 'items' in item.characters;
-}
+  return "characters" in item && "items" in item.characters;
+};

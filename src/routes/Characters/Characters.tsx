@@ -6,8 +6,15 @@ import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 
 const Characters = () => {
-  const { characters, amount, pageSize, pagesAmount, loadCharacters, currentPage, setCurrentPage } =
-  CharactersStore;
+  const {
+    characters,
+    amount,
+    pageSize,
+    pagesAmount,
+    loadCharacters,
+    currentPage,
+    setCurrentPage,
+  } = CharactersStore;
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {

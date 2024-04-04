@@ -36,7 +36,7 @@ function App() {
         },
         {
           path: "/favourites",
-          element: <Favourites />
+          element: <Favourites />,
         },
         { path: "*", element: <NoMatch /> },
       ],
