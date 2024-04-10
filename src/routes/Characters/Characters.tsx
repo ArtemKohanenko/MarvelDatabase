@@ -17,8 +17,12 @@ const Characters = () => {
     setCurrentPage,
   } = CharactersStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
-  
+
   const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    loadCharacters(currentPage * pageSize, pageSize, searchValue);
+  }, [currentPage, searchValue]);
 
   useEffect(() => {
     const unloadHandler = () => {
@@ -27,13 +31,11 @@ const Characters = () => {
     window.addEventListener("beforeunload", unloadHandler);
     getFavourites();
 
-    loadCharacters(currentPage * pageSize, pageSize, searchValue);
-
     return () => {
       saveFavourites();
       window.removeEventListener("beforeunload", unloadHandler);
     };
-  }, [currentPage, searchValue]);
+  }, []);
 
   return (
     <>

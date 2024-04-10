@@ -6,7 +6,6 @@ import IconHeartOutline from "../icons/IconHeartOutline/IconHeartOutline";
 import { MouseEventHandler, useState } from "react";
 import IconHeartFilled from "../icons/IconHeartFilled/IconHeartFilled";
 import { isCharacter } from "../../types/character";
-import { isComic } from "../../types/comic";
 import favouritesStore from "../../stores/FavouitesStore";
 
 const maxSymbols = 128;
@@ -35,13 +34,9 @@ const Card = (props: { item: IListable; isFavourite?: boolean }) => {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    if (isCharacter(item)) {
-      navigate("/" + charactersUrl + "/" + item.id.toString(), {
-        replace: true,
-      });
-    } else if (isComic(item)) {
-      navigate("/" + comicsUrl + "/" + item.id.toString(), { replace: true });
-    }
+    isCharacter(item)
+      ? navigate(`/${charactersUrl}/${item.id}`, { replace: true })
+      : navigate(`/${comicsUrl}/${item.id}`, { replace: true });
   };
 
   const favouriteButtonClickHandler: MouseEventHandler<HTMLButtonElement> = (

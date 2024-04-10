@@ -10,45 +10,32 @@ const Header = () => {
       <nav>
         <ul className={classes.links}>
           <li>
-            <NavLink
-              to="characters"
-              className={classes.navLink}
-            >
-              {({isActive}) => (
-                <a 
-                  className={isActive ? classes.linkActive : classes.link}
-                >
+            <NavLink to="characters" className={classes.navLink}>
+              {({ isActive }) => (
+                <a className={isActive ? classes.linkActive : classes.link}>
                   Characters
                 </a>
               )}
             </NavLink>
           </li>
           <li>
-            <NavLink
-                to="comics"
-                className={classes.navLink}
-            >
-              {({isActive}) => (
-                <span 
-                  className={isActive ? classes.linkActive : classes.link}
-                >
+            <NavLink to="comics" className={classes.navLink}>
+              {({ isActive }) => (
+                <span className={isActive ? classes.linkActive : classes.link}>
                   Comics
                 </span>
               )}
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="favourites"
-              className={classes.navLink}
-            >
-              {({isActive}) => (
+            <NavLink to="favourites" className={classes.navLink}>
+              {({ isActive }) =>
                 isActive ? (
-                  <IconHeartFilled className={classes.icon}/>
-                  ) : (
-                  <IconHeartOutline className={classes.icon}/>
+                  <IconHeartFilled className={classes.icon} />
+                ) : (
+                  <IconHeartOutline className={classes.icon} />
                 )
-              )}
+              }
             </NavLink>
           </li>
         </ul>

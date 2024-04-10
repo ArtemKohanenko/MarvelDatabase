@@ -11,7 +11,13 @@ interface CardsListProps {
   setCurrentPage: (page: number) => void;
 }
 
-const CardsList: React.FC<CardsListProps> = ({list, pagesAmount, currentPage, favourites=[], setCurrentPage}) => {
+const CardsList: React.FC<CardsListProps> = ({
+  list,
+  pagesAmount,
+  currentPage,
+  favourites = [],
+  setCurrentPage,
+}) => {
   const isShowPagination = pagesAmount > 1;
 
   const favouriteIds = favourites.map((item) => item.id);

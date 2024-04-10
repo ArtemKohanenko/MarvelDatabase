@@ -21,19 +21,21 @@ const Comics = () => {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
+    loadComics(currentPage * pageSize, pageSize, searchValue);
+  }, [currentPage, searchValue]);
+
+  useEffect(() => {
     const unloadHandler = () => {
       saveFavourites();
     };
     window.addEventListener("beforeunload", unloadHandler);
     getFavourites();
 
-    loadComics(currentPage * pageSize, pageSize, searchValue);
-
     return () => {
       saveFavourites();
       window.removeEventListener("beforeunload", unloadHandler);
     };
-  }, [currentPage, searchValue]);
+  }, []);
 
   return (
     <>
