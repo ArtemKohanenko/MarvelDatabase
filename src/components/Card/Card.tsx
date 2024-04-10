@@ -19,14 +19,8 @@ const Card = (props: { item: IListable; isFavourite?: boolean }) => {
   const { removeFromFavourites, addToFavourites } = favouritesStore;
 
   const maxSymbols = 128;
-  const iconStyle = {
-    fill: "#ed1a3b",
-    width: "50px",
-    height: "50px",
-  };
   const charactersUrl = "characters";
   const comicsUrl = "comics";
-  const [isFavouriteButtonHover, setIsFavouriteButtonHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(isFavouriteDefault);
 
   let printedDescription = "";
@@ -70,13 +64,11 @@ const Card = (props: { item: IListable; isFavourite?: boolean }) => {
           <button
             className={classes.favouriteButton}
             onClick={favouriteButtonClickHandler}
-            onMouseEnter={() => setIsFavouriteButtonHover(true)}
-            onMouseLeave={() => setIsFavouriteButtonHover(false)}
           >
-            {isFavouriteButtonHover || isFavourite ? (
-              <IconHeartFilled styles={iconStyle} />
+            {isFavourite ? (
+              <IconHeartFilled className={classes.icon} />
             ) : (
-              <IconHeartOutline styles={iconStyle} />
+              <IconHeartOutline className={classes.icon} />
             )}
           </button>
         </div>

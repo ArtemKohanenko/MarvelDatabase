@@ -7,7 +7,6 @@ import classes from "./Header.module.scss";
 const Header = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(location.pathname);
-  const iconColor = "#fbc338";
 
   return (
     <header className={classes.container}>
@@ -42,13 +41,9 @@ const Header = () => {
               onClick={() => setActiveTab("/favourites")}
             >
               {activeTab == "/favourites" ? (
-                <IconHeartFilled
-                  styles={{ width: "40px", height: "40px", fill: iconColor }}
-                />
+                <IconHeartFilled className={classes.icon}/>
               ) : (
-                <IconHeartOutline
-                  styles={{ width: "40px", height: "40px", fill: iconColor }}
-                />
+                <IconHeartOutline className={classes.icon}/>
               )}
             </NavLink>
           </li>
