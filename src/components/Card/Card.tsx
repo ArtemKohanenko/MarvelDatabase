@@ -7,6 +7,7 @@ import { MouseEventHandler, useState } from "react";
 import IconHeartFilled from "../icons/IconHeartFilled/IconHeartFilled";
 import { isCharacter } from "../../types/character";
 import { isComic } from "../../types/comic";
+import favouritesStore from "../../stores/FavouitesStore";
 
 const Card = (props: { item: IListable; isFavourite?: boolean }) => {
   const item = props.item;
@@ -14,6 +15,8 @@ const Card = (props: { item: IListable; isFavourite?: boolean }) => {
 
   const pictureURI = item.thumbnail.path + "." + item.thumbnail.extension;
   const cardTitle = item.name ? item.name : item.title;
+
+  const { removeFromFavourites, addToFavourites } = favouritesStore;
 
   const maxSymbols = 128;
   const iconStyle = {
@@ -52,47 +55,11 @@ const Card = (props: { item: IListable; isFavourite?: boolean }) => {
   ) => {
     event.stopPropagation();
     if (isFavourite) {
-      removeFromFavourites();
+      removeFromFavourites(item);
     } else {
-      addToFavourites();
+      addToFavourites(item);
     }
     setIsFavourite(!isFavourite);
-  };
-
-  const addToFavourites = () => {
-    if (isCharacter(item)) {
-      const charactersFavourites: IListable[] = JSON.parse(
-        localStorage.getItem("charactersFavourites") ?? "[]",
-      );
-      localStorage.setItem(
-        "charactersFavourites",
-        JSON.stringify([...charactersFavourites, item]),
-      );
-    } else if (isComic(item)) {
-      const comicsFavourites: IListable[] = JSON.parse(
-        localStorage.getItem("comicsFavourites") ?? "[]",
-      );
-      localStorage.setItem(
-        "comicsFavourites",
-        JSON.stringify([...comicsFavourites, item]),
-      );
-    }
-  };
-
-  const removeFromFavourites = () => {
-    if (isCharacter(item)) {
-      const charactersFavourites: IListable[] = JSON.parse(
-        localStorage.getItem("charactersFavourites") ?? "[]",
-      );
-      const newList = charactersFavourites.filter((el) => el.id != item.id);
-      localStorage.setItem("charactersFavourites", JSON.stringify(newList));
-    } else if (isComic(item)) {
-      const comicsFavourites: IListable[] = JSON.parse(
-        localStorage.getItem("comicsFavourites") ?? "[]",
-      );
-      const newList = comicsFavourites.filter((el) => el.id != item.id);
-      localStorage.setItem("comicsFavourites", JSON.stringify(newList));
-    }
   };
 
   return (
