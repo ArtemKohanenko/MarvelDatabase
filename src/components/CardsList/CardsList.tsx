@@ -2,7 +2,6 @@ import classes from "./CardsList.module.scss";
 import { IListable } from "../../types/IListable";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
-import favouritesStore from "../../stores/FavouitesStore";
 
 interface CardsListProps {
   list: IListable[];

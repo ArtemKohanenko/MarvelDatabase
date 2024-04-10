@@ -9,6 +9,10 @@ import { isCharacter } from "../../types/character";
 import { isComic } from "../../types/comic";
 import favouritesStore from "../../stores/FavouitesStore";
 
+const maxSymbols = 128;
+const charactersUrl = "characters";
+const comicsUrl = "comics";
+
 const Card = (props: { item: IListable; isFavourite?: boolean }) => {
   const item = props.item;
   const isFavouriteDefault = props.isFavourite ?? false;
@@ -17,10 +21,6 @@ const Card = (props: { item: IListable; isFavourite?: boolean }) => {
   const cardTitle = item.name ? item.name : item.title;
 
   const { removeFromFavourites, addToFavourites } = favouritesStore;
-
-  const maxSymbols = 128;
-  const charactersUrl = "characters";
-  const comicsUrl = "comics";
   const [isFavourite, setIsFavourite] = useState(isFavouriteDefault);
 
   let printedDescription = "";

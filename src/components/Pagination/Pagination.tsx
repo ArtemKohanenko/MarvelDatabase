@@ -1,5 +1,7 @@
 import classes from "./Pagination.module.scss";
 
+const limit = 6;
+
 const Pagination = (props: {
   pagesAmount: number;
   currentPage: number;
@@ -9,7 +11,6 @@ const Pagination = (props: {
   const currentPage = props.currentPage;
   const setCurrentPage = props.setCurrentPage;
 
-  const limit = 6;
   const bottomLimit = currentPage > limit ? currentPage - limit + 1 : 1;
   const upperLimit =
     currentPage + limit < pagesAmount ? currentPage + limit + 1 : pagesAmount;
