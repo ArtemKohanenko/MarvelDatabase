@@ -1,13 +1,9 @@
-import { NavLink, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import IconHeartOutline from "../icons/IconHeartOutline/IconHeartOutline";
 import IconHeartFilled from "../icons/IconHeartFilled/IconHeartFilled";
 import classes from "./Header.module.scss";
 
 const Header = () => {
-  const location = useLocation();
-  const [activeTab, setActiveTab] = useState(location.pathname);
-
   return (
     <header className={classes.container}>
       <img className={classes.logo} src="src/assets/Marvel_Logo.svg"></img>
@@ -16,34 +12,42 @@ const Header = () => {
           <li>
             <NavLink
               to="characters"
-              className={() =>
-                activeTab == "/characters" ? classes.linkActive : classes.link
-              }
-              onClick={() => setActiveTab("/characters")}
+              className={classes.navLink}
             >
-              Characters
+              {({isActive}) => (
+                <a 
+                  className={isActive ? classes.linkActive : classes.link}
+                >
+                  Characters
+                </a>
+              )}
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="comics"
-              className={() =>
-                activeTab == "/comics" ? classes.linkActive : classes.link
-              }
-              onClick={() => setActiveTab("/comics")}
+                to="comics"
+                className={classes.navLink}
             >
-              Comics
+              {({isActive}) => (
+                <span 
+                  className={isActive ? classes.linkActive : classes.link}
+                >
+                  Comics
+                </span>
+              )}
             </NavLink>
           </li>
           <li>
             <NavLink
               to="favourites"
-              onClick={() => setActiveTab("/favourites")}
+              className={classes.navLink}
             >
-              {activeTab == "/favourites" ? (
-                <IconHeartFilled className={classes.icon}/>
-              ) : (
-                <IconHeartOutline className={classes.icon}/>
+              {({isActive}) => (
+                isActive ? (
+                  <IconHeartFilled className={classes.icon}/>
+                  ) : (
+                  <IconHeartOutline className={classes.icon}/>
+                )
               )}
             </NavLink>
           </li>
