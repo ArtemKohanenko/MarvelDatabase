@@ -4,6 +4,7 @@ import SearchField from "../../components/SearchField/SearchField";
 import CharactersStore from "../../stores/CharactersStore";
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
+import favouritesStore from "../../stores/FavouitesStore";
 
 const Characters = () => {
   const {
@@ -15,10 +16,23 @@ const Characters = () => {
     currentPage,
     setCurrentPage,
   } = CharactersStore;
+  const { favourites, getFavourites, saveFavourites } = favouritesStore;
+  
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
+    const unloadHandler = () => {
+      saveFavourites();
+    };
+    window.addEventListener("beforeunload", unloadHandler);
+    getFavourites();
+
     loadCharacters(currentPage * pageSize, pageSize, searchValue);
+
+    return () => {
+      saveFavourites();
+      window.removeEventListener("beforeunload", unloadHandler);
+    };
   }, [currentPage, searchValue]);
 
   return (
@@ -41,6 +55,7 @@ const Characters = () => {
           list={characters}
           pagesAmount={pagesAmount}
           currentPage={currentPage}
+          favourites={favourites}
           setCurrentPage={setCurrentPage}
         />
       </div>

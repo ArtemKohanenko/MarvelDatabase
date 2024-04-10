@@ -15,10 +15,15 @@ const Favourites = () => {
   } = favouritesStore;
 
   useEffect(() => {
+    const unloadHandler = () => {
+      saveFavourites();
+    };
+    window.addEventListener("beforeunload", unloadHandler);
     getFavourites();
 
     return () => {
       saveFavourites();
+      window.removeEventListener("beforeunload", unloadHandler);
     };
   }, []);
 
@@ -35,6 +40,7 @@ const Favourites = () => {
           list={favourites}
           pagesAmount={pagesAmount}
           currentPage={currentPage}
+          favourites={favourites}
           setCurrentPage={() => {}}
         />
       </div>

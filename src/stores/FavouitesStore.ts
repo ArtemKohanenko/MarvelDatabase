@@ -21,24 +21,6 @@ class FavouritesStore {
     makeObservable(this);
   }
 
-  // @computed
-  // get favourites() {
-  //   const favourites: IListable[] = (this.charactersFavourites as IListable[]).concat(this.comicsFavourites);
-  //   favourites.sort((a, b) => {
-  //     const aName = a.name ? a.name : a.title!;
-  //     const bName = b.name ? b.name : b.title!;
-  //     if (aName < bName) {
-  //       return -1;
-  //     } else if (aName > bName) {
-  //       return 1;
-  //     } else {
-  //       return 0;
-  //     }
-  //   });
-
-  //   return favourites;
-  // }
-
   @computed
   get amount() {
     return this.favourites.length;
