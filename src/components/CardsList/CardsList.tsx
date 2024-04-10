@@ -5,10 +5,10 @@ import Pagination from "../Pagination/Pagination";
 
 interface CardsListProps {
   list: IListable[];
-  pagesAmount: number;
-  currentPage: number;
+  pagesAmount?: number;
+  currentPage?: number;
   favourites?: IListable[];
-  setCurrentPage: (page: number) => void;
+  setCurrentPage?: (page: number) => void;
 }
 
 const CardsList: React.FC<CardsListProps> = ({
@@ -18,6 +18,9 @@ const CardsList: React.FC<CardsListProps> = ({
   favourites = [],
   setCurrentPage,
 }) => {
+  pagesAmount = pagesAmount ?? 1;
+  currentPage = currentPage ?? 0;
+  setCurrentPage = setCurrentPage ?? (() => {});
   const isShowPagination = pagesAmount > 1;
 
   const favouriteIds = favourites.map((item) => item.id);

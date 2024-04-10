@@ -8,8 +8,6 @@ const Favourites = () => {
   const {
     amount,
     favourites,
-    pagesAmount,
-    currentPage,
     getFavourites,
     saveFavourites,
   } = favouritesStore;
@@ -38,10 +36,7 @@ const Favourites = () => {
         </div>
         <CardsList
           list={favourites}
-          pagesAmount={pagesAmount}
-          currentPage={currentPage}
           favourites={favourites}
-          setCurrentPage={() => {}}
         />
       </div>
     </>

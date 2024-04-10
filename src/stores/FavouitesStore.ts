@@ -7,10 +7,6 @@ class FavouritesStore {
 
   favouritesChanged: IListable[] = [];
 
-  pagesAmount: number = 1;
-
-  currentPage: number = 0;
-
   constructor() {
     makeObservable(this);
   }
@@ -18,11 +14,6 @@ class FavouritesStore {
   @computed
   get amount() {
     return this.favourites.length;
-  }
-
-  @computed
-  get pageSize() {
-    return this.pagesAmount;
   }
 
   @action
