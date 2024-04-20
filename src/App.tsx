@@ -7,6 +7,7 @@ import ComicDetail from "./routes/ComicDetail/ComicDetail";
 import CharacterDetail from "./routes/CharacterDetail/CharacterDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Favourites from "./routes/Favourites/Favourites";
 
 function App() {
   const routes: RouteObject[] = [
@@ -32,6 +33,10 @@ function App() {
             { index: true, element: <Comics /> },
             { path: "/comics/:id", element: <ComicDetail /> },
           ],
+        },
+        {
+          path: "/favourites",
+          element: <Favourites />,
         },
         { path: "*", element: <NoMatch /> },
       ],

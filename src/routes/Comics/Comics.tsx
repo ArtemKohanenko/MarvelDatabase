@@ -4,16 +4,38 @@ import SearchField from "../../components/SearchField/SearchField";
 import comicsStore from "../../stores/ComicsStore";
 import classes from "./Comics.module.scss";
 import { useEffect, useState } from "react";
+import favouritesStore from "../../stores/FavouitesStore";
 
 const Comics = () => {
-  const { comics, amount, pageSize, pagesAmount, loadComics, currentPage, setCurrentPage } =
-    comicsStore;
+  const {
+    comics,
+    amount,
+    pageSize,
+    pagesAmount,
+    loadComics,
+    currentPage,
+    setCurrentPage,
+  } = comicsStore;
+  const { favourites, getFavourites, saveFavourites } = favouritesStore;
 
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     loadComics(currentPage * pageSize, pageSize, searchValue);
   }, [currentPage, searchValue]);
+
+  useEffect(() => {
+    const unloadHandler = () => {
+      saveFavourites();
+    };
+    window.addEventListener("beforeunload", unloadHandler);
+    getFavourites();
+
+    return () => {
+      saveFavourites();
+      window.removeEventListener("beforeunload", unloadHandler);
+    };
+  }, []);
 
   return (
     <>
@@ -35,6 +57,7 @@ const Comics = () => {
           list={comics}
           pagesAmount={pagesAmount}
           currentPage={currentPage}
+          favourites={favourites}
           setCurrentPage={setCurrentPage}
         />
       </div>

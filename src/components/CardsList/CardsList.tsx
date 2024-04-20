@@ -3,32 +3,45 @@ import { IListable } from "../../types/IListable";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
 
-const CardsList = (props: {
+interface CardsListProps {
   list: IListable[];
-  pagesAmount: number;
-  currentPage: number;
-  setCurrentPage: (page: number) => void;
+  pagesAmount?: number;
+  currentPage?: number;
+  favourites?: IListable[];
+  setCurrentPage?: (page: number) => void;
+}
+
+const CardsList: React.FC<CardsListProps> = ({
+  list,
+  pagesAmount,
+  currentPage,
+  favourites = [],
+  setCurrentPage,
 }) => {
-  const list = props.list;
-  const pagesAmount = props.pagesAmount;
-  const currentPage = props.currentPage;
-  const setCurrentPage = props.setCurrentPage;
+  pagesAmount = pagesAmount ?? 1;
+  currentPage = currentPage ?? 0;
+  setCurrentPage = setCurrentPage ?? (() => {});
+  const isShowPagination = pagesAmount > 1;
+
+  const favouriteIds = favourites.map((item) => item.id);
 
   return (
     <div className={classes.wrapper}>
       <div className={classes.container}>
         {list.map((item) => (
           <div key={item.id} className={classes.cardSpace}>
-            <Card item={item} />
+            <Card item={item} isFavourite={favouriteIds.includes(item.id)} />
           </div>
         ))}
       </div>
       <div className={classes.pagination}>
-        <Pagination
-          pagesAmount={pagesAmount}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        {isShowPagination ? (
+          <Pagination
+            pagesAmount={pagesAmount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        ) : null}
       </div>
     </div>
   );

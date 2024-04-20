@@ -1,11 +1,66 @@
 @import "src/styles";
 
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 200px;
   min-height: 200px;
   border: 1px solid $color-subtitle-text;
+
+  .cover {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    .darkness {
+      visibility: hidden;
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+      background-color: black;
+    }
+
+    .favouriteButtonContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      width: 100%;
+
+      .favouriteButton {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        background-color: transparent;
+        border: none;
+        float: right;
+
+        .icon {
+          fill: $color-icon;
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+      .favouriteButton:active {
+        transition: transform 0.1s ease;
+        transform: scale(0.8);
+      }
+    }
+  }
+
+  .cover:hover {
+    .darkness {
+      visibility: visible;
+    }
+
+    .favouriteButton {
+      display: block;
+    }
+  }
 
   .pictureContainer {
     display: flex;

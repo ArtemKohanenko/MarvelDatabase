@@ -12,3 +12,13 @@ export interface ICharacter extends IListable {
     items: ComicLink[];
   };
 }
+
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
+export const isCharacter = (item: any): item is ICharacter => {
+  return (
+    "comics" in item &&
+    "available" in item.comics &&
+    "collectionURI" in item.comics &&
+    "items" in item.comics
+  );
+};
