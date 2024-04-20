@@ -3,27 +3,27 @@ import { IListable } from "../../types/IListable";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
 
-const CardsList = (props: {
+interface CardsListProps {
   list: IListable[];
-  pagesAmount: number;
-  currentPage: number;
-  setCurrentPage: (page: number) => void;
+  pagesAmount?: number;
+  currentPage?: number;
+  favourites?: IListable[];
+  setCurrentPage?: (page: number) => void;
+}
+
+const CardsList: React.FC<CardsListProps> = ({
+  list,
+  pagesAmount,
+  currentPage,
+  favourites = [],
+  setCurrentPage,
 }) => {
-  const list = props.list;
-  const pagesAmount = props.pagesAmount;
-  const currentPage = props.currentPage;
-  const setCurrentPage = props.setCurrentPage;
+  pagesAmount = pagesAmount ?? 1;
+  currentPage = currentPage ?? 0;
+  setCurrentPage = setCurrentPage ?? (() => {});
   const isShowPagination = pagesAmount > 1;
 
-  const charactersFavourites: IListable[] = JSON.parse(
-    localStorage.getItem("charactersFavourites") ?? "[]",
-  );
-  const comicsFavourites: IListable[] = JSON.parse(
-    localStorage.getItem("comicsFavourites") ?? "[]",
-  );
-  const charactersIds = charactersFavourites.map((item) => item.id);
-  const comicsIds = comicsFavourites.map((item) => item.id);
-  const favouriteIds = charactersIds.concat(comicsIds);
+  const favouriteIds = favourites.map((item) => item.id);
 
   return (
     <div className={classes.wrapper}>

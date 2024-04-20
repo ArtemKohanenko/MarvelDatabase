@@ -1,31 +1,29 @@
 import CardsList from "../../components/CardsList/CardsList";
 import classes from "./Favourites.module.scss";
-import { useState } from "react";
-import { IListable } from "../../types/IListable";
+import favouritesStore from "../../stores/FavouitesStore";
+import { useEffect } from "react";
+import { observer } from "mobx-react-lite";
 
 const Favourites = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const {
+    amount,
+    favourites,
+    getFavourites,
+    saveFavourites,
+  } = favouritesStore;
 
-  const charactersFavourites: IListable[] = JSON.parse(
-    localStorage.getItem("charactersFavourites") ?? "[]",
-  );
-  const comicsFavourites: IListable[] = JSON.parse(
-    localStorage.getItem("comicsFavourites") ?? "[]",
-  );
-  const favouritesList = charactersFavourites.concat(comicsFavourites);
-  favouritesList.sort((a, b) => {
-    const aName = a.name ? a.name : a.title!;
-    const bName = b.name ? b.name : b.title!;
-    if (aName < bName) {
-      return -1;
-    } else if (aName > bName) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
-  const amount = favouritesList.length;
-  const pagesAmount = 1;
+  useEffect(() => {
+    const unloadHandler = () => {
+      saveFavourites();
+    };
+    window.addEventListener("beforeunload", unloadHandler);
+    getFavourites();
+
+    return () => {
+      saveFavourites();
+      window.removeEventListener("beforeunload", unloadHandler);
+    };
+  }, []);
 
   return (
     <>
@@ -37,14 +35,12 @@ const Favourites = () => {
           </div>
         </div>
         <CardsList
-          list={favouritesList}
-          pagesAmount={pagesAmount}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          list={favourites}
+          favourites={favourites}
         />
       </div>
     </>
   );
 };
 
-export default Favourites;
+export default observer(Favourites);
