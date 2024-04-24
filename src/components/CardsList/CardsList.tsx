@@ -1,48 +1,65 @@
 import classes from "./CardsList.module.scss";
 import { IListable } from "../../types/IListable";
 import Card from "../Card/Card";
-import Pagination from "../Pagination/Pagination";
+import { Virtuoso, VirtuosoGrid } from "react-virtuoso";
 
 interface CardsListProps {
   list: IListable[];
-  pagesAmount?: number;
-  currentPage?: number;
   favourites?: IListable[];
-  setCurrentPage?: (page: number) => void;
+  loadNext: () => void;
+  loadPast: () => void;
 }
+
+const Loading = () => {
+  return (
+    <div
+      style={{
+        padding: '2rem',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      Loading...
+    </div>
+  )
+}
+
 
 const CardsList: React.FC<CardsListProps> = ({
   list,
-  pagesAmount,
-  currentPage,
   favourites = [],
-  setCurrentPage,
+  loadNext,
+  loadPast
 }) => {
-  pagesAmount = pagesAmount ?? 1;
-  currentPage = currentPage ?? 0;
-  setCurrentPage = setCurrentPage ?? (() => {});
-  const isShowPagination = pagesAmount > 1;
-
   const favouriteIds = favourites.map((item) => item.id);
+
+  const endReachedHandler = () => {
+    console.log('загузка будющих')
+    loadNext();
+  }
+
+  const startReachedHandler = () => {
+    // console.log('загрузка прошлых')
+    // setTimeout(() => {
+    //   loadPast();
+    // }, 200)
+  }
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.container}>
-        {list.map((item) => (
-          <div key={item.id} className={classes.cardSpace}>
-            <Card item={item} isFavourite={favouriteIds.includes(item.id)} />
-          </div>
-        ))}
-      </div>
-      <div className={classes.pagination}>
-        {isShowPagination ? (
-          <Pagination
-            pagesAmount={pagesAmount}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-        ) : null}
-      </div>
+      <VirtuosoGrid
+        className={classes.grid}
+        totalCount={list.length}
+        itemContent={(index: number) => 
+            <Card item={list[index]} isFavourite={favouriteIds.includes(list[index].id)} />
+        }
+        // overscan={12}
+        itemClassName={classes.cardSpace}
+        listClassName={classes.container}
+        endReached={endReachedHandler}
+        startReached={startReachedHandler}
+        components={{ Footer: Loading }}
+      />
     </div>
   );
 };

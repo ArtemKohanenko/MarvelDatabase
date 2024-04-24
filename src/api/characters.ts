@@ -10,6 +10,7 @@ interface ICharacterRequest {
 interface ICharactersResponse {
   data: {
     total: number;
+    count: number;
     results: ICharacter[];
   };
 }
