@@ -6,6 +6,7 @@ import {
 } from "mobx";
 import { getCharacterById, getCharacters } from "../api/characters";
 import { ICharacter } from "../types/character";
+import { DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES } from "react";
 
 class CharactersStore {
   @observable
@@ -14,12 +15,13 @@ class CharactersStore {
   @observable
   total: number = 0;
 
-  firstCharacterIndx = 0;
-
-  lastCharacterIndx = 0;
-
   @observable
   selectedCharacter: ICharacter | null = null;
+
+  @observable
+  nameStartsWith: string = '';
+
+  count: number = 0;
 
   defaultLoadLimit: number = 36;
 
@@ -30,23 +32,23 @@ class CharactersStore {
   }
 
   @action
-  loadCharacters = async (
-    nameStartsWith?: string,
+  loadFirstCharacters = async (
+    limit: number
   ): Promise<void> => {
     try {
       this.loading = true;
-      let params = {limit: this.defaultLoadLimit};
-      
-      if (nameStartsWith) {
+      let params = { limit };
+
+      if (this.nameStartsWith) {
         params = Object.assign(params, {
-          nameStartsWith,
+          nameStartsWith: this.nameStartsWith,
         });
       }
-
+      
       const { data } = await getCharacters(params);
       runInAction(() => {
-        this.characters = data.data.results;
-        this.lastCharacterIndx = data.data.count - 1;
+        this.characters = [...data.data.results];
+        this.count = data.data.count;
         this.total = data.data.total;
       });
     } catch (error) {
@@ -60,62 +62,24 @@ class CharactersStore {
 
   @action
   loadNextCharacters = async (
-    nameStartsWith?: string,
-  ): Promise<void> => {
-    if (!this.loading) {
-      try {
-        this.loading = true;
-        let params = { limit: this.defaultLoadLimit, offset: this.lastCharacterIndx + 1 };
-  
-        if (nameStartsWith) {
-          params = Object.assign(params, {
-            nameStartsWith,
-          });
-        }
-  
-        const { data } = await getCharacters(params);
-        runInAction(() => {
-          this.characters = [...this.characters, ...data.data.results];
-          this.lastCharacterIndx += data.data.count;
-          console.log(this.lastCharacterIndx)
-        });
-      } catch (error) {
-        console.error(error);
-      } finally {
-        runInAction(() => {
-          this.loading = false;
-        });
-      }
-    }
-  };
-
-  @action
-  loadPastCharacters = async (
-    nameStartsWith?: string,
+    offset: number,
+    limit: number
   ): Promise<void> => {
     try {
       this.loading = true;
+      let params = { limit, offset };
 
-      if (this.firstCharacterIndx != 0) {
-        const limit = this.firstCharacterIndx >= this.defaultLoadLimit
-          ? this.defaultLoadLimit
-          : this.firstCharacterIndx;
-        const offset = this.firstCharacterIndx - limit;
-
-        let params = { limit, offset };
-
-        if (nameStartsWith) {
-          params = Object.assign(params, {
-            nameStartsWith,
-          });
-        }
-
-        const { data } = await getCharacters(params);
-        runInAction(() => {
-          this.characters = [...data.data.results, ...this.characters];
-          this.firstCharacterIndx -= data.data.count;
+      if (this.nameStartsWith) {
+        params = Object.assign(params, {
+          nameStartsWith: this.nameStartsWith,
         });
       }
+      
+      const { data } = await getCharacters(params);
+      runInAction(() => {
+        this.characters = [...this.characters, ...data.data.results];
+        this.count += data.data.count;
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -141,6 +105,11 @@ class CharactersStore {
       });
     }
   };
+
+  @action
+  setNameStartsWith = (newString: string) => {
+    this.nameStartsWith = newString;
+  }
 }
 
 const characetrsStore = new CharactersStore();

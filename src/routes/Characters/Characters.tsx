@@ -2,7 +2,7 @@ import CardsList from "../../components/CardsList/CardsList";
 import classes from "./Characters.module.scss";
 import SearchField from "../../components/SearchField/SearchField";
 import CharactersStore from "../../stores/CharactersStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import favouritesStore from "../../stores/FavouitesStore";
 
@@ -10,17 +10,18 @@ const Characters = () => {
   const {
     characters,
     total,
-    loadCharacters,
+    count,
+    defaultLoadLimit,
+    nameStartsWith,
+    setNameStartsWith,
+    loadFirstCharacters,
     loadNextCharacters,
-    loadPastCharacters
   } = CharactersStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
 
-  const [searchValue, setSearchValue] = useState("");
-
   useEffect(() => {
-    loadCharacters(searchValue);
-  }, [searchValue]);
+    loadFirstCharacters(defaultLoadLimit);
+  }, [nameStartsWith]);
 
   useEffect(() => {
     const unloadHandler = () => {
@@ -44,9 +45,9 @@ const Characters = () => {
             <span className={classes.counter}>({total})</span>
           </div>
           <SearchField
-            searchValue={searchValue}
+            searchValue={nameStartsWith}
             setSearchValue={(value) => {
-              setSearchValue(value);
+              setNameStartsWith(value);
               // setCurrentPage(0);
             }}
           />
@@ -54,8 +55,7 @@ const Characters = () => {
         <CardsList
           list={characters}
           favourites={favourites}
-          loadNext={loadNextCharacters}
-          loadPast={loadPastCharacters}
+          loadData={() => loadNextCharacters(count, defaultLoadLimit)}
         />
       </div>
     </>
