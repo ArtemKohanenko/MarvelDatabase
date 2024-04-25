@@ -17,13 +17,13 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, 200px);
       gap: 20px;
-  
+
       .cardSpace {
         height: max-content;
         width: max-content;
         display: flex;
         justify-content: center;
       }
-    }  
+    }
   }
 }

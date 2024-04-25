@@ -16,7 +16,7 @@ const Comics = () => {
     loading,
     setNameStartsWith,
     loadFirstComics,
-    loadNextComics
+    loadNextComics,
   } = comicsStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
 

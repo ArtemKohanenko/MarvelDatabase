@@ -2,11 +2,10 @@ import classes from "./Loader.module.scss";
 import { Oval } from "react-loader-spinner";
 
 interface LoaderProps {
-  visible?: boolean
+  visible?: boolean;
 }
 
-const Loader: React.FC<LoaderProps> = ({visible = false}) => {
-
+const Loader: React.FC<LoaderProps> = ({ visible = false }) => {
   return (
     <div className={classes.container}>
       <Oval

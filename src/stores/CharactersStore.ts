@@ -1,9 +1,4 @@
-import {
-  action,
-  makeObservable,
-  observable,
-  runInAction,
-} from "mobx";
+import { action, makeObservable, observable, runInAction } from "mobx";
 import { getCharacterById, getCharacters } from "../api/characters";
 import { ICharacter } from "../types/character";
 
@@ -18,7 +13,7 @@ class CharactersStore {
   selectedCharacter: ICharacter | null = null;
 
   @observable
-  nameStartsWith: string = '';
+  nameStartsWith: string = "";
 
   @observable
   loading: boolean = false;
@@ -32,9 +27,7 @@ class CharactersStore {
   }
 
   @action
-  loadFirstCharacters = async (
-    limit: number
-  ): Promise<void> => {
+  loadFirstCharacters = async (limit: number): Promise<void> => {
     try {
       this.loading = true;
       let params = { limit };
@@ -44,7 +37,7 @@ class CharactersStore {
           nameStartsWith: this.nameStartsWith,
         });
       }
-      
+
       const { data } = await getCharacters(params);
       runInAction(() => {
         this.characters = [...data.data.results];
@@ -61,10 +54,7 @@ class CharactersStore {
   };
 
   @action
-  loadNextCharacters = async (
-    offset: number,
-    limit: number
-  ): Promise<void> => {
+  loadNextCharacters = async (offset: number, limit: number): Promise<void> => {
     try {
       this.loading = true;
       let params = { limit, offset };
@@ -74,7 +64,7 @@ class CharactersStore {
           nameStartsWith: this.nameStartsWith,
         });
       }
-      
+
       const { data } = await getCharacters(params);
       runInAction(() => {
         this.characters = [...this.characters, ...data.data.results];
@@ -109,7 +99,7 @@ class CharactersStore {
   @action
   setNameStartsWith = (newString: string) => {
     this.nameStartsWith = newString;
-  }
+  };
 }
 
 const characetrsStore = new CharactersStore();

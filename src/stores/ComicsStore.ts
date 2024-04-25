@@ -1,9 +1,4 @@
-import {
-  action,
-  makeObservable,
-  observable,
-  runInAction,
-} from "mobx";
+import { action, makeObservable, observable, runInAction } from "mobx";
 import { IComic } from "../types/comic";
 import { getComicById, getComics } from "../api/comics";
 
@@ -18,7 +13,7 @@ class ComicsStore {
   selectedComic: IComic | null = null;
 
   @observable
-  titleStartsWith: string = '';
+  titleStartsWith: string = "";
 
   @observable
   loading: boolean = false;
@@ -32,9 +27,7 @@ class ComicsStore {
   }
 
   @action
-  loadFirstComics = async (
-    limit: number
-  ): Promise<void> => {
+  loadFirstComics = async (limit: number): Promise<void> => {
     try {
       this.loading = true;
       let params = { limit };
@@ -44,7 +37,7 @@ class ComicsStore {
           titleStartsWith: this.titleStartsWith,
         });
       }
-      
+
       const { data } = await getComics(params);
       runInAction(() => {
         this.comics = [...data.data.results];
@@ -61,10 +54,7 @@ class ComicsStore {
   };
 
   @action
-  loadNextComics = async (
-    offset: number,
-    limit: number
-  ): Promise<void> => {
+  loadNextComics = async (offset: number, limit: number): Promise<void> => {
     try {
       this.loading = true;
       let params = { limit, offset };
@@ -74,7 +64,7 @@ class ComicsStore {
           titleStartsWith: this.titleStartsWith,
         });
       }
-      
+
       const { data } = await getComics(params);
       runInAction(() => {
         this.comics = [...this.comics, ...data.data.results];
@@ -109,7 +99,7 @@ class ComicsStore {
   @action
   setNameStartsWith = (newString: string) => {
     this.titleStartsWith = newString;
-  }
+  };
 }
 
 const comicsStore = new ComicsStore();

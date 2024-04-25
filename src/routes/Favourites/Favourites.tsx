@@ -5,12 +5,7 @@ import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 
 const Favourites = () => {
-  const {
-    amount,
-    favourites,
-    getFavourites,
-    saveFavourites,
-  } = favouritesStore;
+  const { amount, favourites, getFavourites, saveFavourites } = favouritesStore;
 
   useEffect(() => {
     const unloadHandler = () => {
@@ -34,10 +29,7 @@ const Favourites = () => {
             <span className={classes.counter}>({amount})</span>
           </div>
         </div>
-        <CardsList
-          list={favourites}
-          favourites={favourites}
-        />
+        <CardsList list={favourites} favourites={favourites} />
       </div>
     </>
   );
