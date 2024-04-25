@@ -1,6 +1,5 @@
 import {
   action,
-  computed,
   makeObservable,
   observable,
   runInAction,
@@ -10,53 +9,76 @@ import { getComicById, getComics } from "../api/comics";
 
 class ComicsStore {
   @observable
-  comics: IComic[] | [] = [];
+  comics: IComic[] = [];
 
   @observable
-  amount: number = 0;
-
-  pageSize: number = 18;
-
-  @observable
-  currentPage: number = 0;
-
-  @observable
-  selectedCharacter: IComic | null = null;
+  total: number = 0;
 
   @observable
   selectedComic: IComic | null = null;
 
+  @observable
+  titleStartsWith: string = '';
+
+  @observable
   loading: boolean = false;
+
+  count: number = 0;
+
+  defaultLoadLimit: number = 36;
 
   constructor() {
     makeObservable(this);
   }
 
-  @computed
-  get pagesAmount() {
-    return Math.ceil(this.amount / this.pageSize);
-  }
+  @action
+  loadFirstComics = async (
+    limit: number
+  ): Promise<void> => {
+    try {
+      this.loading = true;
+      let params = { limit };
+
+      if (this.titleStartsWith) {
+        params = Object.assign(params, {
+          titleStartsWith: this.titleStartsWith,
+        });
+      }
+      
+      const { data } = await getComics(params);
+      runInAction(() => {
+        this.comics = [...data.data.results];
+        this.count = data.data.count;
+        this.total = data.data.total;
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
 
   @action
-  loadComics = async (
+  loadNextComics = async (
     offset: number,
-    limit: number,
-    titleStartsWith?: string,
+    limit: number
   ): Promise<void> => {
     try {
       this.loading = true;
       let params = { limit, offset };
 
-      if (titleStartsWith) {
+      if (this.titleStartsWith) {
         params = Object.assign(params, {
-          titleStartsWith,
+          titleStartsWith: this.titleStartsWith,
         });
       }
-
+      
       const { data } = await getComics(params);
       runInAction(() => {
-        this.comics = data.data.results;
-        this.amount = data.data.total;
+        this.comics = [...this.comics, ...data.data.results];
+        this.count += data.data.count;
       });
     } catch (error) {
       console.error(error);
@@ -85,9 +107,9 @@ class ComicsStore {
   };
 
   @action
-  setCurrentPage = (currentPage: number): void => {
-    this.currentPage = currentPage;
-  };
+  setNameStartsWith = (newString: string) => {
+    this.titleStartsWith = newString;
+  }
 }
 
 const comicsStore = new ComicsStore();

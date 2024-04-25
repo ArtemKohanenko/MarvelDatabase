@@ -3,26 +3,26 @@ import CardsList from "../../components/CardsList/CardsList";
 import SearchField from "../../components/SearchField/SearchField";
 import comicsStore from "../../stores/ComicsStore";
 import classes from "./Comics.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import favouritesStore from "../../stores/FavouitesStore";
 
 const Comics = () => {
   const {
     comics,
-    amount,
-    pageSize,
-    pagesAmount,
-    loadComics,
-    currentPage,
-    setCurrentPage,
+    total,
+    count,
+    defaultLoadLimit,
+    titleStartsWith,
+    loading,
+    setNameStartsWith,
+    loadFirstComics,
+    loadNextComics
   } = comicsStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
 
-  const [searchValue, setSearchValue] = useState("");
-
   useEffect(() => {
-    loadComics(currentPage * pageSize, pageSize, searchValue);
-  }, [currentPage, searchValue]);
+    loadFirstComics(defaultLoadLimit);
+  }, [titleStartsWith]);
 
   useEffect(() => {
     const unloadHandler = () => {
@@ -43,22 +43,20 @@ const Comics = () => {
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
             <span className={classes.title}>Comics</span>
-            <span className={classes.counter}>({amount})</span>
+            <span className={classes.counter}>({total})</span>
           </div>
           <SearchField
-            searchValue={searchValue}
+            searchValue={titleStartsWith}
             setSearchValue={(value) => {
-              setSearchValue(value);
-              setCurrentPage(0);
+              setNameStartsWith(value);
             }}
           />
         </div>
         <CardsList
           list={comics}
-          pagesAmount={pagesAmount}
-          currentPage={currentPage}
           favourites={favourites}
-          setCurrentPage={setCurrentPage}
+          loadData={() => loadNextComics(count, defaultLoadLimit)}
+          isLoading={loading}
         />
       </div>
     </>
