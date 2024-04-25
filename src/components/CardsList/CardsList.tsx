@@ -20,7 +20,6 @@ const CardsList: React.FC<CardsListProps> = ({
   const favouriteIds = favourites.map((item) => item.id);
 
   const endReachedHandler = () => {
-    console.log("загузка будющих");
     loadData();
   };
 
