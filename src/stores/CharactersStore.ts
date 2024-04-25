@@ -6,7 +6,6 @@ import {
 } from "mobx";
 import { getCharacterById, getCharacters } from "../api/characters";
 import { ICharacter } from "../types/character";
-import { DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES } from "react";
 
 class CharactersStore {
   @observable
@@ -21,11 +20,12 @@ class CharactersStore {
   @observable
   nameStartsWith: string = '';
 
+  @observable
+  loading: boolean = false;
+
   count: number = 0;
 
   defaultLoadLimit: number = 36;
-
-  loading: boolean = false;
 
   constructor() {
     makeObservable(this);

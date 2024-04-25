@@ -2,31 +2,20 @@ import classes from "./CardsList.module.scss";
 import { IListable } from "../../types/IListable";
 import Card from "../Card/Card";
 import { VirtuosoGrid } from "react-virtuoso";
+import { Audio, Oval } from 'react-loader-spinner'
+import Loader from "../Loader/Loader";
 
 interface CardsListProps {
   list: IListable[];
   favourites?: IListable[];
   loadData: () => void;
+  isLoading? :boolean;
 }
-
-const Loading = () => {
-  return (
-    <div
-      style={{
-        padding: '2rem',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
-      Loading...
-    </div>
-  )
-}
-
 
 const CardsList: React.FC<CardsListProps> = ({
   list,
   favourites = [],
+  isLoading,
   loadData
 }) => {
   const favouriteIds = favourites.map((item) => item.id);
@@ -47,8 +36,7 @@ const CardsList: React.FC<CardsListProps> = ({
         itemClassName={classes.cardSpace}
         listClassName={classes.container}
         endReached={endReachedHandler}
-        components={{ Footer: Loading }}
-      />
+        components={{ Footer: () => <Loader visible={isLoading}/>}}/>
     </div>
   );
 };

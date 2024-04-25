@@ -13,6 +13,7 @@ const Characters = () => {
     count,
     defaultLoadLimit,
     nameStartsWith,
+    loading,
     setNameStartsWith,
     loadFirstCharacters,
     loadNextCharacters,
@@ -48,7 +49,6 @@ const Characters = () => {
             searchValue={nameStartsWith}
             setSearchValue={(value) => {
               setNameStartsWith(value);
-              // setCurrentPage(0);
             }}
           />
         </div>
@@ -56,6 +56,7 @@ const Characters = () => {
           list={characters}
           favourites={favourites}
           loadData={() => loadNextCharacters(count, defaultLoadLimit)}
+          isLoading={loading}
         />
       </div>
     </>
