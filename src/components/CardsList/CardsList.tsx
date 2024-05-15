@@ -1,48 +1,54 @@
 import classes from "./CardsList.module.scss";
 import { IListable } from "../../types/IListable";
 import Card from "../Card/Card";
-import Pagination from "../Pagination/Pagination";
+import {
+  VirtuosoGrid,
+  VirtuosoGridHandle,
+} from "react-virtuoso";
+import Loader from "../Loader/Loader";
+import { RefObject } from "react";
 
 interface CardsListProps {
   list: IListable[];
-  pagesAmount?: number;
-  currentPage?: number;
   favourites?: IListable[];
-  setCurrentPage?: (page: number) => void;
+  loadData?: () => void;
+  isLoading?: boolean;
+  listRef?: RefObject<VirtuosoGridHandle>;
 }
 
 const CardsList: React.FC<CardsListProps> = ({
   list,
-  pagesAmount,
-  currentPage,
   favourites = [],
-  setCurrentPage,
+  isLoading,
+  loadData,
+  listRef,
 }) => {
-  pagesAmount = pagesAmount ?? 1;
-  currentPage = currentPage ?? 0;
-  setCurrentPage = setCurrentPage ?? (() => {});
-  const isShowPagination = pagesAmount > 1;
-
   const favouriteIds = favourites.map((item) => item.id);
+
+  const endReachedHandler = () => {
+    if (loadData) {
+      loadData();
+    }
+  };
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.container}>
-        {list.map((item) => (
-          <div key={item.id} className={classes.cardSpace}>
-            <Card item={item} isFavourite={favouriteIds.includes(item.id)} />
-          </div>
-        ))}
-      </div>
-      <div className={classes.pagination}>
-        {isShowPagination ? (
-          <Pagination
-            pagesAmount={pagesAmount}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
+      <VirtuosoGrid
+        ref={listRef}
+        className={classes.grid}
+        useWindowScroll
+        totalCount={list.length}
+        itemContent={(index: number) => (
+          <Card
+            item={list[index]}
+            isFavourite={favouriteIds.includes(list[index].id)}
           />
-        ) : null}
-      </div>
+        )}
+        itemClassName={classes.cardSpace}
+        listClassName={classes.container}
+        endReached={endReachedHandler}
+        components={{ Footer: () => <Loader visible={isLoading} /> }}
+      />
     </div>
   );
 };

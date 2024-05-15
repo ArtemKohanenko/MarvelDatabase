@@ -1,11 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import classes from "./SearchField.module.scss";
+import { VirtuosoGridHandle } from "react-virtuoso";
 
 const SearchField = (props: {
   searchValue: string;
+  listRef?: RefObject<VirtuosoGridHandle>;
   setSearchValue: (value: string) => void;
 }) => {
   const searchValue = props.searchValue;
+  const listRef = props.listRef;
   const setSearchValue = props.setSearchValue;
 
   const [value, setValue] = useState(searchValue);
@@ -22,6 +30,7 @@ const SearchField = (props: {
   const submitHandler = () => {
     clearTimeout(timeoutRef.current);
     setSearchValue(value);
+    listRef?.current?.scrollToIndex(0);
   };
 
   const changeHandle = (event: React.ChangeEvent<HTMLInputElement>) => {

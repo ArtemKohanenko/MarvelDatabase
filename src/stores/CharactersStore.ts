@@ -1,59 +1,78 @@
-import {
-  action,
-  computed,
-  makeObservable,
-  observable,
-  runInAction,
-} from "mobx";
+import { action, makeObservable, observable, runInAction } from "mobx";
 import { getCharacterById, getCharacters } from "../api/characters";
 import { ICharacter } from "../types/character";
 
 class CharactersStore {
   @observable
-  characters: ICharacter[] | [] = [];
+  characters: ICharacter[] = [];
 
   @observable
-  amount: number = 0;
-
-  pageSize: number = 18;
-
-  @observable
-  currentPage: number = 0;
+  total: number = 0;
 
   @observable
   selectedCharacter: ICharacter | null = null;
 
+  @observable
+  nameStartsWith: string = "";
+
+  @observable
   loading: boolean = false;
+
+  count: number = 0;
+
+  defaultLoadLimit: number = 36;
 
   constructor() {
     makeObservable(this);
   }
 
-  @computed
-  get pagesAmount() {
-    return Math.ceil(this.amount / this.pageSize);
-  }
-
   @action
-  loadCharacters = async (
-    offset?: number,
-    limit?: number,
-    nameStartsWith?: string,
-  ): Promise<void> => {
+  loadFirstCharacters = async (limit: number): Promise<void> => {
     try {
       this.loading = true;
-      let params = { limit, offset };
+      let params = { limit };
 
-      if (nameStartsWith) {
+      if (this.nameStartsWith) {
         params = Object.assign(params, {
-          nameStartsWith,
+          nameStartsWith: this.nameStartsWith,
         });
       }
 
       const { data } = await getCharacters(params);
       runInAction(() => {
-        this.characters = data.data.results;
-        this.amount = data.data.total;
+        this.characters = [...data.data.results];
+        this.count = data.data.count;
+        this.total = data.data.total;
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
+
+  @action
+  loadNextCharacters = async (offset: number, limit: number): Promise<void> => {
+    try {
+      if (offset >= this.total) {
+        return;
+      }
+
+      this.loading = true;
+      let params = { limit, offset };
+
+      if (this.nameStartsWith) {
+        params = Object.assign(params, {
+          nameStartsWith: this.nameStartsWith,
+        });
+      }
+
+      const { data } = await getCharacters(params);
+      runInAction(() => {
+        this.characters = [...this.characters, ...data.data.results];
+        this.count += data.data.count;
       });
     } catch (error) {
       console.error(error);
@@ -82,8 +101,8 @@ class CharactersStore {
   };
 
   @action
-  setCurrentPage = (currentPage: number): void => {
-    this.currentPage = currentPage;
+  setNameStartsWith = (newString: string) => {
+    this.nameStartsWith = newString;
   };
 }
 

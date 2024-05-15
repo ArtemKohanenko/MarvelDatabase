@@ -10,6 +10,7 @@ interface IComicsRequest {
 interface IComicsResponse {
   data: {
     total: number;
+    count: number;
     results: IComic[];
   };
 }

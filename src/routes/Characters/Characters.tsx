@@ -2,27 +2,29 @@ import CardsList from "../../components/CardsList/CardsList";
 import classes from "./Characters.module.scss";
 import SearchField from "../../components/SearchField/SearchField";
 import CharactersStore from "../../stores/CharactersStore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import favouritesStore from "../../stores/FavouitesStore";
+import { VirtuosoGridHandle } from "react-virtuoso";
 
 const Characters = () => {
   const {
     characters,
-    amount,
-    pageSize,
-    pagesAmount,
-    loadCharacters,
-    currentPage,
-    setCurrentPage,
+    total,
+    count,
+    defaultLoadLimit,
+    nameStartsWith,
+    loading,
+    setNameStartsWith,
+    loadFirstCharacters,
+    loadNextCharacters,
   } = CharactersStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
-
-  const [searchValue, setSearchValue] = useState("");
+  const listRef = useRef<VirtuosoGridHandle>(null);
 
   useEffect(() => {
-    loadCharacters(currentPage * pageSize, pageSize, searchValue);
-  }, [currentPage, searchValue]);
+    loadFirstCharacters(defaultLoadLimit);
+  }, [nameStartsWith]);
 
   useEffect(() => {
     const unloadHandler = () => {
@@ -43,22 +45,22 @@ const Characters = () => {
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
             <span className={classes.title}>Characters</span>
-            <span className={classes.counter}>({amount})</span>
+            <span className={classes.counter}>({total})</span>
           </div>
           <SearchField
-            searchValue={searchValue}
+            listRef={listRef}
+            searchValue={nameStartsWith}
             setSearchValue={(value) => {
-              setSearchValue(value);
-              setCurrentPage(0);
+              setNameStartsWith(value);
             }}
           />
         </div>
         <CardsList
+          listRef={listRef}
           list={characters}
-          pagesAmount={pagesAmount}
-          currentPage={currentPage}
           favourites={favourites}
-          setCurrentPage={setCurrentPage}
+          loadData={() => loadNextCharacters(count, defaultLoadLimit)}
+          isLoading={loading}
         />
       </div>
     </>

@@ -3,26 +3,28 @@ import CardsList from "../../components/CardsList/CardsList";
 import SearchField from "../../components/SearchField/SearchField";
 import comicsStore from "../../stores/ComicsStore";
 import classes from "./Comics.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import favouritesStore from "../../stores/FavouitesStore";
+import { VirtuosoGridHandle } from "react-virtuoso";
 
 const Comics = () => {
   const {
     comics,
-    amount,
-    pageSize,
-    pagesAmount,
-    loadComics,
-    currentPage,
-    setCurrentPage,
+    total,
+    count,
+    defaultLoadLimit,
+    titleStartsWith,
+    loading,
+    setNameStartsWith,
+    loadFirstComics,
+    loadNextComics,
   } = comicsStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
-
-  const [searchValue, setSearchValue] = useState("");
+  const listRef = useRef<VirtuosoGridHandle>(null);
 
   useEffect(() => {
-    loadComics(currentPage * pageSize, pageSize, searchValue);
-  }, [currentPage, searchValue]);
+    loadFirstComics(defaultLoadLimit);
+  }, [titleStartsWith]);
 
   useEffect(() => {
     const unloadHandler = () => {
@@ -43,22 +45,22 @@ const Comics = () => {
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
             <span className={classes.title}>Comics</span>
-            <span className={classes.counter}>({amount})</span>
+            <span className={classes.counter}>({total})</span>
           </div>
           <SearchField
-            searchValue={searchValue}
+            listRef={listRef}
+            searchValue={titleStartsWith}
             setSearchValue={(value) => {
-              setSearchValue(value);
-              setCurrentPage(0);
+              setNameStartsWith(value);
             }}
           />
         </div>
         <CardsList
+          listRef={listRef}
           list={comics}
-          pagesAmount={pagesAmount}
-          currentPage={currentPage}
           favourites={favourites}
-          setCurrentPage={setCurrentPage}
+          loadData={() => loadNextComics(count, defaultLoadLimit)}
+          isLoading={loading}
         />
       </div>
     </>
