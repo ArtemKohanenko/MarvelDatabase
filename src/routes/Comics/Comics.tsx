@@ -48,7 +48,7 @@ const Comics = () => {
             <span className={classes.counter}>({total})</span>
           </div>
           <SearchField
-          listRef={listRef}
+            listRef={listRef}
             searchValue={titleStartsWith}
             setSearchValue={(value) => {
               setNameStartsWith(value);

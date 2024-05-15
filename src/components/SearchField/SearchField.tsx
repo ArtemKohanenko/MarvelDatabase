@@ -1,4 +1,9 @@
-import { MutableRefObject, Ref, RefObject, useEffect, useRef, useState } from "react";
+import {
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import classes from "./SearchField.module.scss";
 import { VirtuosoGridHandle } from "react-virtuoso";
 
