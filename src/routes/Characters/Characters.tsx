@@ -2,9 +2,10 @@ import CardsList from "../../components/CardsList/CardsList";
 import classes from "./Characters.module.scss";
 import SearchField from "../../components/SearchField/SearchField";
 import CharactersStore from "../../stores/CharactersStore";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import favouritesStore from "../../stores/FavouitesStore";
+import { VirtuosoGridHandle } from "react-virtuoso";
 
 const Characters = () => {
   const {
@@ -19,6 +20,7 @@ const Characters = () => {
     loadNextCharacters,
   } = CharactersStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
+  const listRef = useRef<VirtuosoGridHandle>(null);
 
   useEffect(() => {
     loadFirstCharacters(defaultLoadLimit);
@@ -46,6 +48,7 @@ const Characters = () => {
             <span className={classes.counter}>({total})</span>
           </div>
           <SearchField
+            listRef={listRef}
             searchValue={nameStartsWith}
             setSearchValue={(value) => {
               setNameStartsWith(value);
@@ -53,6 +56,7 @@ const Characters = () => {
           />
         </div>
         <CardsList
+          listRef={listRef}
           list={characters}
           favourites={favourites}
           loadData={() => loadNextCharacters(count, defaultLoadLimit)}

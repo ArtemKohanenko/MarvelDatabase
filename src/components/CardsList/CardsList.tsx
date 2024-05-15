@@ -1,14 +1,19 @@
 import classes from "./CardsList.module.scss";
 import { IListable } from "../../types/IListable";
 import Card from "../Card/Card";
-import { VirtuosoGrid } from "react-virtuoso";
+import {
+  VirtuosoGrid,
+  VirtuosoGridHandle,
+} from "react-virtuoso";
 import Loader from "../Loader/Loader";
+import { RefObject } from "react";
 
 interface CardsListProps {
   list: IListable[];
   favourites?: IListable[];
-  loadData: () => void;
+  loadData?: () => void;
   isLoading?: boolean;
+  listRef?: RefObject<VirtuosoGridHandle>;
 }
 
 const CardsList: React.FC<CardsListProps> = ({
@@ -16,17 +21,22 @@ const CardsList: React.FC<CardsListProps> = ({
   favourites = [],
   isLoading,
   loadData,
+  listRef,
 }) => {
   const favouriteIds = favourites.map((item) => item.id);
 
   const endReachedHandler = () => {
-    loadData();
+    if (loadData) {
+      loadData();
+    }
   };
 
   return (
     <div className={classes.wrapper}>
       <VirtuosoGrid
+        ref={listRef}
         className={classes.grid}
+        useWindowScroll
         totalCount={list.length}
         itemContent={(index: number) => (
           <Card

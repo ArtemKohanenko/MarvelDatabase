@@ -56,6 +56,10 @@ class ComicsStore {
   @action
   loadNextComics = async (offset: number, limit: number): Promise<void> => {
     try {
+      if (offset >= this.total) {
+        return;
+      }
+
       this.loading = true;
       let params = { limit, offset };
 
