@@ -3,8 +3,9 @@ import CardsList from "../../components/CardsList/CardsList";
 import SearchField from "../../components/SearchField/SearchField";
 import comicsStore from "../../stores/ComicsStore";
 import classes from "./Comics.module.scss";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import favouritesStore from "../../stores/FavouitesStore";
+import { VirtuosoGridHandle } from "react-virtuoso";
 
 const Comics = () => {
   const {
@@ -19,6 +20,7 @@ const Comics = () => {
     loadNextComics,
   } = comicsStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
+  const listRef = useRef<VirtuosoGridHandle>(null);
 
   useEffect(() => {
     loadFirstComics(defaultLoadLimit);
@@ -46,6 +48,7 @@ const Comics = () => {
             <span className={classes.counter}>({total})</span>
           </div>
           <SearchField
+          listRef={listRef}
             searchValue={titleStartsWith}
             setSearchValue={(value) => {
               setNameStartsWith(value);
@@ -53,6 +56,7 @@ const Comics = () => {
           />
         </div>
         <CardsList
+          listRef={listRef}
           list={comics}
           favourites={favourites}
           loadData={() => loadNextComics(count, defaultLoadLimit)}
