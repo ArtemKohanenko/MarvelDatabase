@@ -13,9 +13,9 @@ import { getToken, onMessage } from "firebase/messaging";
 import { useEffect } from "react";
 import { messaging } from "./firebase/firebaseConfig";
 
-function App() {
-  const { VITE_APP_VAPID_KEY } = import.meta.env;
+const { VITE_APP_VAPID_KEY } = import.meta.env;
 
+function App() {
   async function requestPermission() {
     const permission = await Notification.requestPermission();
 
@@ -33,12 +33,13 @@ function App() {
 
   useEffect(() => {
     requestPermission();
+    onMessage(messaging, (payload) => {
+      console.log("incoming msg");
+      toast(<Message notification={payload.notification} />);
+    });
   }, []);
 
-  onMessage(messaging, (payload) => {
-    console.log("incoming msg");
-    toast(<Message notification={payload.notification} />);
-  });
+  
 
   const routes: RouteObject[] = [
     {
