@@ -6,7 +6,7 @@
   flex-direction: column;
   width: 200px;
   height: 400px;
-  border: 1px solid $color-subtitle-text;
+  border: 1px solid var(--color-subtitle-text);
 
   .cover {
     position: absolute;
@@ -40,7 +40,7 @@
         float: right;
 
         .icon {
-          fill: $color-icon;
+          fill: var(--color-icon);
           width: 50px;
           height: 50px;
         }
@@ -87,12 +87,12 @@
 
     .name {
       font-weight: 700;
-      color: $color-title-text-2;
+      color: var(--color-title-text-2);
       font-size: $font-size-subtitle;
     }
 
     .description {
-      color: $color-subtitle-text;
+      color: var(--color-subtitle-text);
       margin: 0;
     }
   }

@@ -6,10 +6,15 @@
   align-items: center;
   justify-content: space-between;
   height: 80px;
-  background-color: $color-header-background;
+  background-color: var(--color-header-background);
   padding: 0 20px;
 
   .leftBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
     .logo {
       height: 50px;
     }
@@ -32,14 +37,14 @@
         text-decoration: none;
 
         .link {
-          color: $color-tab-text;
+          color: var(--color-tab-text);
           font-size: $font-size-primary;
           font-weight: 600;
           font-family: $font-secondary;
         }
         .linkActive {
           text-decoration: underline;
-          color: $color-tab-text;
+          color: var(--color-tab-text);
           font-size: $font-size-primary;
           font-weight: 600;
           font-family: $font-secondary;
@@ -48,7 +53,7 @@
         .icon {
           width: 40px;
           height: 40px;
-          fill: $color-tab-text;
+          fill: var(--color-tab-text);
         }
       }
     }

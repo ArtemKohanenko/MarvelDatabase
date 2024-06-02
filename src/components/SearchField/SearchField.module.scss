@@ -10,16 +10,16 @@
     height: 100%;
     width: 100%;
     border-radius: 0;
-    border: 1px solid $color-subtitle-text;
-    color: $color-subtitle-text;
+    border: 1px solid var(--color-subtitle-text);
+    color: var(--color-subtitle-text);
     box-sizing: border-box;
   }
 
   .searchButton {
     height: 100%;
     width: 200px;
-    background-color: $color-button;
-    color: $color-secondary-text;
+    background-color: var(--color-button);
+    color: var(--color-secondary-text);
     border: none;
   }
 }

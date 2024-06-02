@@ -4,6 +4,7 @@ import IconHeartFilled from "../icons/IconHeartFilled/IconHeartFilled";
 import classes from "./Header.module.scss";
 import { useTranslation } from "react-i18next";
 import LangSwitch from "../LangSwitch/LangSwitch";
+import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -12,6 +13,7 @@ const Header = () => {
     <header className={classes.container}>
       <div className={classes.leftBlock}>
         <img className={classes.logo} src="public/Marvel_Logo.svg"></img>
+        <ThemeSwitch/>
       </div>
 
       <div className={classes.rightBlock}>

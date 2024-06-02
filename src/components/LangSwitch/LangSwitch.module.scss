@@ -8,7 +8,7 @@
 
   .button {
     font-family: $font-secondary;
-    color: $color-tab-text;
+    color: var(--color-tab-text);
     font-size: $font-size-subtitle;
     cursor: pointer;
   }
@@ -19,7 +19,7 @@
   }
 
   .divider {
-    color: $color-tab-text;
+    color: var(--color-tab-text);
     font-size: $font-size-title;
   }
 }
