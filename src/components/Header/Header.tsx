@@ -6,7 +6,7 @@ import classes from "./Header.module.scss";
 const Header = () => {
   return (
     <header className={classes.container}>
-      <img className={classes.logo} src="src/assets/Marvel_Logo.svg"></img>
+      <img className={classes.logo} src="public/Marvel_Logo.svg"></img>
       <nav>
         <ul className={classes.links}>
           <li>

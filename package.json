@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.8",
+    "firebase": "^10.12.0",
     "mobx": "^6.12.0",
     "mobx-react-lite": "^4.0.6",
     "react": "^18.2.0",
@@ -19,7 +20,12 @@
     "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^6.22.1",
     "react-toastify": "^10.0.5",
-    "react-virtuoso": "^4.7.9"
+    "react-virtuoso": "^4.7.9",
+    "workbox-core": "^6.6.0",
+    "workbox-expiration": "^6.6.0",
+    "workbox-precaching": "^6.6.0",
+    "workbox-routing": "^6.6.0",
+    "workbox-strategies": "^6.6.0"
   },
   "devDependencies": {
     "@types/node-sass": "^4.11.7",
