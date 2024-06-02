@@ -6,6 +6,7 @@ import classes from "./Comics.module.scss";
 import { useEffect, useRef } from "react";
 import favouritesStore from "../../stores/FavouitesStore";
 import { VirtuosoGridHandle } from "react-virtuoso";
+import { useTranslation } from "react-i18next";
 
 const Comics = () => {
   const {
@@ -21,6 +22,7 @@ const Comics = () => {
   } = comicsStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
   const listRef = useRef<VirtuosoGridHandle>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     loadFirstComics(defaultLoadLimit);
@@ -44,7 +46,7 @@ const Comics = () => {
       <div className={classes.wrapper}>
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
-            <span className={classes.title}>Comics</span>
+            <span className={classes.title}>{ t('comics-title') }</span>
             <span className={classes.counter}>({total})</span>
           </div>
           <SearchField

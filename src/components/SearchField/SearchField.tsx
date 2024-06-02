@@ -6,6 +6,7 @@ import {
 } from "react";
 import classes from "./SearchField.module.scss";
 import { VirtuosoGridHandle } from "react-virtuoso";
+import { useTranslation } from "react-i18next";
 
 const SearchField = (props: {
   searchValue: string;
@@ -16,6 +17,7 @@ const SearchField = (props: {
   const listRef = props.listRef;
   const setSearchValue = props.setSearchValue;
 
+  const { t } = useTranslation();
   const [value, setValue] = useState(searchValue);
 
   const timeoutRef = useRef<NodeJS.Timeout>();
@@ -47,7 +49,7 @@ const SearchField = (props: {
         onChange={changeHandle}
       ></input>
       <button className={classes.searchButton} onClick={() => submitHandler()}>
-        SEARCH
+        { t('search-button') }
       </button>
     </div>
   );

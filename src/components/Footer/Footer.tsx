@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import classes from "./Footer.module.scss";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const { t } = useTranslation();
 
   return (
     <footer className={classes.container}>
@@ -11,7 +13,7 @@ const Footer = () => {
           <img className={classes.logo} src="public/Marvel_Logo.svg"></img>
         </div>
         <span className={classes.text}>
-          Data provided by Marvel. @{year} MARVEL
+          { t('data-provided', { year }) }
         </span>
         <Link
           to={{ pathname: "developer.marvel.com" }}

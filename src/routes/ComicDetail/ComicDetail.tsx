@@ -4,12 +4,16 @@ import { useEffect } from "react";
 import comicsStore from "../../stores/ComicsStore";
 import { observer } from "mobx-react-lite";
 import { externalLinkToLocal } from "../../utils/detailUtils";
+import { useTranslation } from "react-i18next";
 
 const ComicDetail = () => {
   const { id } = useParams();
   const { selectedComic, getComicById } = comicsStore;
   const pictureURI =
     selectedComic?.thumbnail.path + "." + selectedComic?.thumbnail.extension;
+  
+  const { t } = useTranslation();
+
 
   useEffect(() => {
     if (id) {
@@ -31,7 +35,7 @@ const ComicDetail = () => {
             </span>
           </div>
           <div className={classes.rightColumn}>
-            <span className={classes.title}>Characters</span>
+            <span className={classes.title}>{ t('characters-title') }</span>
             {selectedComic?.characters.items.map((item) => (
               <a
                 target="_blank"

@@ -3,9 +3,12 @@ import classes from "./Favourites.module.scss";
 import favouritesStore from "../../stores/FavouitesStore";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 
 const Favourites = () => {
   const { amount, favourites, getFavourites, saveFavourites } = favouritesStore;
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const unloadHandler = () => {
@@ -25,7 +28,7 @@ const Favourites = () => {
       <div className={classes.wrapper}>
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
-            <span className={classes.title}>Favourites</span>
+            <span className={classes.title}>{ t('favourites-title') }</span>
             <span className={classes.counter}>({amount})</span>
           </div>
         </div>
