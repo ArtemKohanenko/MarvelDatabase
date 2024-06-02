@@ -1,0 +1,25 @@
+@import "src/styles";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+
+  .button {
+    font-family: $font-secondary;
+    color: $color-tab-text;
+    font-size: $font-size-subtitle;
+    cursor: pointer;
+  }
+
+  .active {
+    text-decoration: underline;
+    // font-weight: 700;
+  }
+
+  .divider {
+    color: $color-tab-text;
+    font-size: $font-size-title;
+  }
+}

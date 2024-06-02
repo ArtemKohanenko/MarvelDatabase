@@ -9,37 +9,64 @@
   background-color: $color-header-background;
   padding: 0 20px;
 
-  .logo {
-    height: 50px;
+  .leftBlock {
+    .logo {
+      height: 50px;
+    }
   }
 
-  .links {
+  .rightBlock {
     display: flex;
     flex-direction: row;
-    gap: 10px;
-    list-style-type: none;
+    width: 350px;
+    justify-content: space-between;
 
-    .navLink {
-      text-decoration: none;
+    .langSwitch {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
 
-      .link {
+      .button {
         color: $color-tab-text;
-        font-size: $font-size-primary;
-        font-weight: 600;
-        font-family: $font-secondary;
-      }
-      .linkActive {
-        text-decoration: underline;
-        color: $color-tab-text;
-        font-size: $font-size-primary;
-        font-weight: 600;
-        font-family: $font-secondary;
+        font-size: $font-size-subtitle;
       }
 
-      .icon {
-        width: 40px;
-        height: 40px;
-        fill: $color-tab-text;
+      .divider {
+        color: $color-tab-text;
+        font-size: $font-size-title;
+      }
+    }
+
+    .links {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      list-style-type: none;
+  
+      .navLink {
+        text-decoration: none;
+  
+        .link {
+          color: $color-tab-text;
+          font-size: $font-size-primary;
+          font-weight: 600;
+          font-family: $font-secondary;
+        }
+        .linkActive {
+          text-decoration: underline;
+          color: $color-tab-text;
+          font-size: $font-size-primary;
+          font-weight: 600;
+          font-family: $font-secondary;
+        }
+  
+        .icon {
+          width: 40px;
+          height: 40px;
+          fill: $color-tab-text;
+        }
       }
     }
   }
