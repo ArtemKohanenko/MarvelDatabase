@@ -21,33 +21,16 @@
     width: 350px;
     justify-content: space-between;
 
-    .langSwitch {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 5px;
-
-      .button {
-        color: $color-tab-text;
-        font-size: $font-size-subtitle;
-      }
-
-      .divider {
-        color: $color-tab-text;
-        font-size: $font-size-title;
-      }
-    }
-
     .links {
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 10px;
       list-style-type: none;
-  
+
       .navLink {
         text-decoration: none;
-  
+
         .link {
           color: $color-tab-text;
           font-size: $font-size-primary;
@@ -61,7 +44,7 @@
           font-weight: 600;
           font-family: $font-secondary;
         }
-  
+
         .icon {
           width: 40px;
           height: 40px;

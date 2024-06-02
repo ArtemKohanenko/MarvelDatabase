@@ -28,7 +28,7 @@ const Favourites = () => {
       <div className={classes.wrapper}>
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
-            <span className={classes.title}>{ t('favourites-title') }</span>
+            <span className={classes.title}>{t("favourites-title")}</span>
             <span className={classes.counter}>({amount})</span>
           </div>
         </div>

@@ -11,9 +11,8 @@ const ComicDetail = () => {
   const { selectedComic, getComicById } = comicsStore;
   const pictureURI =
     selectedComic?.thumbnail.path + "." + selectedComic?.thumbnail.extension;
-  
-  const { t } = useTranslation();
 
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (id) {
@@ -35,7 +34,7 @@ const ComicDetail = () => {
             </span>
           </div>
           <div className={classes.rightColumn}>
-            <span className={classes.title}>{ t('characters-title') }</span>
+            <span className={classes.title}>{t("characters-title")}</span>
             {selectedComic?.characters.items.map((item) => (
               <a
                 target="_blank"

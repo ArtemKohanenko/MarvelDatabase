@@ -46,7 +46,7 @@ const Comics = () => {
       <div className={classes.wrapper}>
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
-            <span className={classes.title}>{ t('comics-title') }</span>
+            <span className={classes.title}>{t("comics-title")}</span>
             <span className={classes.counter}>({total})</span>
           </div>
           <SearchField

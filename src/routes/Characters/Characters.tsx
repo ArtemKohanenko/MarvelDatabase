@@ -24,7 +24,6 @@ const Characters = () => {
   const listRef = useRef<VirtuosoGridHandle>(null);
   const { t } = useTranslation();
 
-
   useEffect(() => {
     loadFirstCharacters(defaultLoadLimit);
   }, [nameStartsWith]);
@@ -47,7 +46,7 @@ const Characters = () => {
       <div className={classes.wrapper}>
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
-            <span className={classes.title}>{ t('characters-title') }</span>
+            <span className={classes.title}>{t("characters-title")}</span>
             <span className={classes.counter}>({total})</span>
           </div>
           <SearchField

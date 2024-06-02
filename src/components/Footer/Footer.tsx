@@ -12,9 +12,7 @@ const Footer = () => {
         <div>
           <img className={classes.logo} src="public/Marvel_Logo.svg"></img>
         </div>
-        <span className={classes.text}>
-          { t('data-provided', { year }) }
-        </span>
+        <span className={classes.text}>{t("data-provided", { year })}</span>
         <Link
           to={{ pathname: "developer.marvel.com" }}
           target="_blank"

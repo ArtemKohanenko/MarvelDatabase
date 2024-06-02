@@ -13,7 +13,7 @@ const CharacterDetail = () => {
     selectedCharacter?.thumbnail.path +
     "." +
     selectedCharacter?.thumbnail.extension;
-  
+
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const CharacterDetail = () => {
             </span>
           </div>
           <div className={classes.rightColumn}>
-            <span className={classes.title}>{ t('comics-title') }</span>
+            <span className={classes.title}>{t("comics-title")}</span>
             {selectedCharacter?.comics.items.map((item) => (
               <a
                 target="_blank"

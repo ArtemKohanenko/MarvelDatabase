@@ -1,9 +1,4 @@
-import {
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import classes from "./SearchField.module.scss";
 import { VirtuosoGridHandle } from "react-virtuoso";
 import { useTranslation } from "react-i18next";
@@ -49,7 +44,7 @@ const SearchField = (props: {
         onChange={changeHandle}
       ></input>
       <button className={classes.searchButton} onClick={() => submitHandler()}>
-        { t('search-button') }
+        {t("search-button")}
       </button>
     </div>
   );

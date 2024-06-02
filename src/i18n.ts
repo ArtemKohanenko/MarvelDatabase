@@ -7,28 +7,28 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      'data-provided': 'Data provided by Marvel. @{{year}} MARVEL',
-      'characters-link': 'Characters',
-      'comics-link': 'Comics',
-      'search-button': 'SEARCH',
-      'comics-title': 'Comics',
-      'characters-title': 'Characters',
-      'favourites-title': 'Favoutites',
-      'page-not-exist-text': "Page doesn't exist."
-    }
+      "data-provided": "Data provided by Marvel. @{{year}} MARVEL",
+      "characters-link": "Characters",
+      "comics-link": "Comics",
+      "search-button": "SEARCH",
+      "comics-title": "Comics",
+      "characters-title": "Characters",
+      "favourites-title": "Favoutites",
+      "page-not-exist-text": "Page doesn't exist.",
+    },
   },
   ru: {
     translation: {
-      'data-provided': 'Данные предоставлены Marvel. @{{year}} MARVEL',
-      'characters-link': 'Персонажи',
-      'comics-link': 'Комиксы',
-      'search-button': 'ПОИСК',
-      'comics-title': 'Комиксы',
-      'characters-title': 'Персонажи',
-      'favourites-title': 'Избранное',
-      'page-not-exist-text': "Страница не существует."
-    }
-  }
+      "data-provided": "Данные предоставлены Marvel. @{{year}} MARVEL",
+      "characters-link": "Персонажи",
+      "comics-link": "Комиксы",
+      "search-button": "ПОИСК",
+      "comics-title": "Комиксы",
+      "characters-title": "Персонажи",
+      "favourites-title": "Избранное",
+      "page-not-exist-text": "Страница не существует.",
+    },
+  },
 };
 
 i18n
@@ -40,8 +40,8 @@ i18n
     // if you're using a language detector, do not define the lng option
 
     interpolation: {
-      escapeValue: false // react already safes from xss
-    }
+      escapeValue: false, // react already safes from xss
+    },
   });
 
-  export default i18n;
+export default i18n;
