@@ -11,11 +11,11 @@
     color: var(--color-tab-text);
     font-size: $font-size-subtitle;
     cursor: pointer;
+    user-select: none;
   }
 
   .active {
     text-decoration: underline;
-    // font-weight: 700;
   }
 
   .divider {

@@ -5,10 +5,12 @@ import { useTranslation } from "react-i18next";
 
 const SearchField = (props: {
   searchValue: string;
+  searchPlaceholder?: string;
   listRef?: RefObject<VirtuosoGridHandle>;
   setSearchValue: (value: string) => void;
 }) => {
   const searchValue = props.searchValue;
+  const searchPlaceholder = props.searchPlaceholder ?? '';
   const listRef = props.listRef;
   const setSearchValue = props.setSearchValue;
 
@@ -39,7 +41,7 @@ const SearchField = (props: {
       <input
         className={classes.searchField}
         type="text"
-        placeholder="Search for Characters by Name"
+        placeholder={ searchPlaceholder }
         value={value}
         onChange={changeHandle}
       ></input>
