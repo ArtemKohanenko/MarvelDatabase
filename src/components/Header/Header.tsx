@@ -13,12 +13,9 @@ const Header = () => {
     <header className={classes.container}>
       <div className={classes.leftBlock}>
         <img className={classes.logo} src="public/Marvel_Logo.svg"></img>
-        <ThemeSwitch/>
       </div>
 
       <div className={classes.rightBlock}>
-        <LangSwitch />
-
         <nav>
           <ul className={classes.links}>
             <li>
@@ -54,6 +51,10 @@ const Header = () => {
             </li>
           </ul>
         </nav>
+
+        <LangSwitch />
+
+        <ThemeSwitch/>
       </div>
     </header>
   );

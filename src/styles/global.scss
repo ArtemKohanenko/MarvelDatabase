@@ -18,6 +18,7 @@ body {
 
   --color-header-background: #ed1a3b;
   --color-background: white;
+  --color-card-background: white;
   --color-footer-background: #555555;
   --color-button: #fbc338;
   --color-icon: #ed1a3b;
@@ -34,8 +35,9 @@ body {
 }
 
 body.dark {
-  --color-header-background: #ed1a3b;
-  --color-background: #0e110e;
+  --color-header-background: #792426;
+  --color-background: #292929;
+  --color-card-background: #383838;
   --color-footer-background: #555555;
   --color-button: #fbc338;
   --color-icon: #ed1a3b;
@@ -43,8 +45,8 @@ body.dark {
   --color-primary-text: #f4f4f4;
   --color-secondary-text: white;
   --color-tab-text: #fbc338;
-  --color-title-text: #323232;
-  --color-title-text-2: #ed1a3b;
+  --color-title-text: #ababab;
+  --color-title-text-2: #ababab;
   --color-subtitle-text: #777777;
 }
 
