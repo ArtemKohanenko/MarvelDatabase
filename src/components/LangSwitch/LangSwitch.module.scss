@@ -22,4 +22,14 @@
     color: var(--color-tab-text);
     font-size: $font-size-title;
   }
+
+  @media (max-width: 600px) {
+    .button {
+      font-size: $font-size-primary-mobile;
+    }
+    
+    .divider {
+      font-size: $font-size-title-mobile;
+    }
+  }
 }

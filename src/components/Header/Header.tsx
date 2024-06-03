@@ -21,9 +21,9 @@ const Header = () => {
             <li>
               <NavLink to="characters" className={classes.navLink}>
                 {({ isActive }) => (
-                  <a className={isActive ? classes.linkActive : classes.link}>
+                  <span className={`${classes.link} ${isActive ? classes.active : ''}`}>
                     {t("characters-link")}
-                  </a>
+                  </span>
                 )}
               </NavLink>
             </li>
@@ -31,7 +31,7 @@ const Header = () => {
               <NavLink to="comics" className={classes.navLink}>
                 {({ isActive }) => (
                   <span
-                    className={isActive ? classes.linkActive : classes.link}
+                    className={`${classes.link} ${isActive ? classes.active : ''}`}
                   >
                     {t("comics-link")}
                   </span>
@@ -52,9 +52,10 @@ const Header = () => {
           </ul>
         </nav>
 
-        <LangSwitch />
-
-        <ThemeSwitch />
+        <div className={classes.swithes}>
+          <LangSwitch />
+          <ThemeSwitch />
+        </div>
       </div>
     </header>
   );

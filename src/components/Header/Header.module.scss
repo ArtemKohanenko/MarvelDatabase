@@ -22,8 +22,18 @@
   .rightBlock {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: end;
     align-items: center;
-    gap: 30px;
+    column-gap: 30px;
+
+    .swithes {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
 
     .links {
       display: flex;
@@ -31,6 +41,8 @@
       align-items: center;
       gap: 10px;
       list-style-type: none;
+      margin: 0;
+      padding: 0;
 
       .navLink {
         text-decoration: none;
@@ -41,18 +53,26 @@
           font-weight: 600;
           font-family: $font-secondary;
         }
-        .linkActive {
+        
+        .active {
           text-decoration: underline;
-          color: var(--color-tab-text);
-          font-size: $font-size-primary;
-          font-weight: 600;
-          font-family: $font-secondary;
         }
 
         .icon {
           width: 40px;
           height: 40px;
           fill: var(--color-tab-text);
+        }
+
+        @media (max-width: 600px) {
+          .link {
+            font-size: $font-size-primary-mobile;
+          }
+
+          .icon {
+            width: 30px;
+            height: 30px;
+          }
         }
       }
     }

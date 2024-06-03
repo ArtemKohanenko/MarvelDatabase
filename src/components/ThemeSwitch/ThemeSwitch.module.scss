@@ -1,35 +1,26 @@
 $transition: 0.2s;
-$width: 4em;
-$height: $width/2;
-
-html {
-  font-size: 16px;
-  box-sizing: border-box;
-}
-body {
-  font-size: 1em;
-  font-family: arial, sans-serif;
-}
 
 .toggle {
+  --width: 50px;
+  --height: 25px;
+
   .toggleControl {
     transition: $transition;
-    width: $width;
-    height: $height;
+    width: var(--width);
+    height: var(--height);
     display: block;
     border: 2px solid var(--theme-toggle-dark);
-    border-radius: $height;
+    border-radius: var(--width);
     background-color: var(--theme-toggle-light);
     position: relative;
     &:after {
       transition: $transition;
       content: "";
-      width: $width/2;
-      height: $height;
+      width: var(--height);
+      height: var(--height);
       display: block;
       background-color: var(--theme-toggle-dark);
       border-radius: 50%;
-      // box-shadow: 0 1px 2px rgba(black, .4),0 3px 2px rgba(black,.4);
       position: absolute;
       top: 0;
       left: 0;
@@ -42,9 +33,17 @@ body {
       border-color: var(--theme-toggle-light);
       background-color: var(--theme-toggle-dark);
       &:after {
-        left: $width/2;
+        left: var(--height);
         background-color: var(--theme-toggle-light);
       }
     }
   }
 }
+
+@media (max-width: 600px) {
+  .toggle {
+    --width: 30px;
+    --height: 15px;
+  }
+}
+

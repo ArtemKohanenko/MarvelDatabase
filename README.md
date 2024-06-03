@@ -16,3 +16,17 @@ cd MarvelDatabase
 npm install
 npm run dev
 ```
+
+## Hosting
+<img src="https://deploy-badge.vercel.app/?url=https://marvel-database-dpry9ucuk-artemkohanenkos-projects.vercel.app/&name=website" alt="Website Deploy"></img>
+
+https://marvel-database-dpry9ucuk-artemkohanenkos-projects.vercel.app/
+
+
+## Screens
+
+<img src="sreens\1.png" width="600">
+
+<img src="sreens\2.png" width="600">
+
+<img src="sreens\3.png" width="600">
