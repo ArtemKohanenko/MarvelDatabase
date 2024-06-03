@@ -52,7 +52,7 @@ const Comics = () => {
           <SearchField
             listRef={listRef}
             searchValue={titleStartsWith}
-            searchPlaceholder={ t('search-comics-placeholder') }
+            searchPlaceholder={t("search-comics-placeholder")}
             setSearchValue={(value) => {
               setNameStartsWith(value);
             }}

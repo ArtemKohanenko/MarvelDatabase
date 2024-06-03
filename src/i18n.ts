@@ -16,7 +16,7 @@ const resources = {
       "favourites-title": "Favoutites",
       "page-not-exist-text": "Page doesn't exist.",
       "search-character-placeholder": "Search for Characters by Name",
-      "search-comics-placeholder": "Search for Comics by Title"
+      "search-comics-placeholder": "Search for Comics by Title",
     },
   },
   ru: {
@@ -30,7 +30,7 @@ const resources = {
       "favourites-title": "Избранное",
       "page-not-exist-text": "Страница не существует.",
       "search-placeholder": "Поиск персонажа по имени",
-      "search-comics-placeholder": "Поиск комикса по названию"
+      "search-comics-placeholder": "Поиск комикса по названию",
     },
   },
 };

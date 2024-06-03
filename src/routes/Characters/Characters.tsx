@@ -51,7 +51,7 @@ const Characters = () => {
           </div>
           <SearchField
             listRef={listRef}
-            searchPlaceholder={ t('search-character-placeholder') }
+            searchPlaceholder={t("search-character-placeholder")}
             searchValue={nameStartsWith}
             setSearchValue={(value) => {
               setNameStartsWith(value);

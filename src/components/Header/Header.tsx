@@ -54,7 +54,7 @@ const Header = () => {
 
         <LangSwitch />
 
-        <ThemeSwitch/>
+        <ThemeSwitch />
       </div>
     </header>
   );

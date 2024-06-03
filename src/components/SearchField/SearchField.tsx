@@ -10,7 +10,7 @@ const SearchField = (props: {
   setSearchValue: (value: string) => void;
 }) => {
   const searchValue = props.searchValue;
-  const searchPlaceholder = props.searchPlaceholder ?? '';
+  const searchPlaceholder = props.searchPlaceholder ?? "";
   const listRef = props.listRef;
   const setSearchValue = props.setSearchValue;
 
@@ -41,7 +41,7 @@ const SearchField = (props: {
       <input
         className={classes.searchField}
         type="text"
-        placeholder={ searchPlaceholder }
+        placeholder={searchPlaceholder}
         value={value}
         onChange={changeHandle}
       ></input>
