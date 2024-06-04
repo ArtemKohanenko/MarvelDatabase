@@ -18,9 +18,9 @@ npm run dev
 ```
 
 ## Hosting
-![Website Deploy](https://deploy-badge.vercel.app/?url=https://marvel-database-dpry9ucuk-artemkohanenkos-projects.vercel.app/&name=website)
+![Website Deploy](https://deploy-badge.vercel.app/?url=https://marvel-database-hygp2y77y-artemkohanenkos-projects.vercel.app/&name=website)
 
-https://marvel-database-dpry9ucuk-artemkohanenkos-projects.vercel.app/
+https://marvel-database-hygp2y77y-artemkohanenkos-projects.vercel.app/
 
 
 ## Screens
