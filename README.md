@@ -1,7 +1,7 @@
 # General info
 
 This project is being developed as part of a course from Effective.
-This is frontend application that provides information about Marvel heroes.
+This is frontend application that provides information about Marvel heroes and comics. `https://developer.marvel.com` is used to recieve data.
 
 ## Technologies
 
@@ -18,7 +18,9 @@ npm run dev
 ```
 
 ## Hosting
-![Website Deploy](https://deploy-badge.vercel.app/?url=https://marvel-database-hygp2y77y-artemkohanenkos-projects.vercel.app/&name=website)
+Vercel is used for hosting.
+
+![Website Deploy](https://deploy-badge.vercel.app/?url=https://marvel-database-hygp2y77y-artemkohanenkos-projects.vercel.app/&name=vercel)
 
 https://marvel-database-hygp2y77y-artemkohanenkos-projects.vercel.app/
 
