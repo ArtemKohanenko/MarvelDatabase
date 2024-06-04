@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header className={classes.container}>
       <div className={classes.leftBlock}>
-        <img className={classes.logo} src="public/Marvel_Logo.svg"></img>
+        <img className={classes.logo} src="Marvel_Logo.svg"></img>
       </div>
 
       <div className={classes.rightBlock}>

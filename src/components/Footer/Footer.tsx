@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className={classes.container}>
       <div className={classes.leftBlock}>
         <div>
-          <img className={classes.logo} src="public/Marvel_Logo.svg"></img>
+          <img className={classes.logo} src="Marvel_Logo.svg"></img>
         </div>
         <span className={classes.text}>{t("data-provided", { year })}</span>
         <Link
