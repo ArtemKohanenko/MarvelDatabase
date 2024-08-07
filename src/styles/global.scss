@@ -1,0 +1,61 @@
+html {
+  font-family: $font-primary;
+  color: var(--color-primary-text);
+  height: 100%;
+}
+
+// @media (prefers-color-scheme: dark) {
+//   body {
+//     background-color: $darkmode-color-background;
+//     color: $darkmode-color-primary-text;
+//   }
+// }
+
+body {
+  margin: 0;
+  height: 100%;
+  background-color: var(--color-background);
+
+  --color-header-background: #ed1a3b;
+  --color-background: white;
+  --color-card-background: white;
+  --color-footer-background: #555555;
+  --color-button: #fbc338;
+  --color-icon: #ed1a3b;
+
+  --theme-toggle-light: white;
+  --theme-toggle-dark: black;
+
+  --color-primary-text: black;
+  --color-secondary-text: white;
+  --color-tab-text: #fbc338;
+  --color-title-text: #323232;
+  --color-title-text-2: #ed1a3b;
+  --color-subtitle-text: #777777;
+}
+
+body.dark {
+  --color-header-background: #792426;
+  --color-background: #292929;
+  --color-card-background: #383838;
+  --color-footer-background: #555555;
+  --color-button: #fbc338;
+  --color-icon: #ed1a3b;
+
+  --color-primary-text: #f4f4f4;
+  --color-secondary-text: white;
+  --color-tab-text: #fbc338;
+  --color-title-text: #ababab;
+  --color-title-text-2: #ababab;
+  --color-subtitle-text: #777777;
+}
+
+#root {
+  height: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

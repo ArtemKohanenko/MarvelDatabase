@@ -1,0 +1,49 @@
+$transition: 0.2s;
+
+.toggle {
+  --width: 50px;
+  --height: 25px;
+
+  .toggleControl {
+    transition: $transition;
+    width: var(--width);
+    height: var(--height);
+    display: block;
+    border: 2px solid var(--theme-toggle-dark);
+    border-radius: var(--width);
+    background-color: var(--theme-toggle-light);
+    position: relative;
+    &:after {
+      transition: $transition;
+      content: "";
+      width: var(--height);
+      height: var(--height);
+      display: block;
+      background-color: var(--theme-toggle-dark);
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  input {
+    display: none;
+    &:checked + .toggleControl {
+      border-color: var(--theme-toggle-light);
+      background-color: var(--theme-toggle-dark);
+      &:after {
+        left: var(--height);
+        background-color: var(--theme-toggle-light);
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .toggle {
+    --width: 30px;
+    --height: 15px;
+  }
+}
+

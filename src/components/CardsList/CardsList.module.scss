@@ -1,0 +1,30 @@
+@import "src/styles";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 100px;
+
+  .grid {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 20px 0;
+
+    .container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 200px);
+      gap: 20px;
+
+      .cardSpace {
+        height: max-content;
+        width: max-content;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+      }
+    }
+  }
+}
