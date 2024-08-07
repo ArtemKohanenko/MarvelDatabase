@@ -1,6 +1,6 @@
 importScripts("https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js");
 importScripts(
-  "https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"
+  "https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js",
 );
 
 // Initialize the Firebase app in the service worker
@@ -16,14 +16,14 @@ firebase.initializeApp(defaultConfig);
 
 class CustomPushEvent extends Event {
   constructor(data) {
-    super('push');
+    super("push");
 
     Object.assign(this, data);
     this.custom = true;
   }
 }
 
-self.addEventListener('push', (e) => {
+self.addEventListener("push", (e) => {
   // Skip if event is our own custom event
   if (e.custom) return;
 
@@ -69,16 +69,16 @@ messaging.onBackgroundMessage((payload) => {
 });
 
 const openPushNotification = (event) => {
-  if (event.action === 'close') {
+  if (event.action === "close") {
     event.notification.close();
     return;
   }
 
-  if (event.action === 'open' || event.action === '') {
+  if (event.action === "open" || event.action === "") {
     event.notification.close();
     event.waitUntil(
       clients
-        .matchAll({ type: 'window', includeUncontrolled: true })
+        .matchAll({ type: "window", includeUncontrolled: true })
         .then((windowClients) => {
           if (windowClients.length > 0) {
             windowClients[0]
@@ -88,10 +88,9 @@ const openPushNotification = (event) => {
             const url = event.currentTarget.registration.scope;
             return clients.openWindow(url);
           }
-        })
+        }),
     );
   }
 };
 
-self.addEventListener('notificationclick', openPushNotification);
-
+self.addEventListener("notificationclick", openPushNotification);

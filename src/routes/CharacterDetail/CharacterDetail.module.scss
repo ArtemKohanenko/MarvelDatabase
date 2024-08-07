@@ -33,11 +33,11 @@
       .name {
         font-family: $font-secondary;
         font-size: $font-size-subtitle;
-        color: $color-title-text;
+        color: var(--color-title-text);
       }
 
       .description {
-        color: $color-primary-text;
+        color: var(--color-primary-text);
       }
     }
 
@@ -49,7 +49,7 @@
       .title {
         font-family: $font-secondary;
         font-size: $font-size-subtitle;
-        color: $color-title-text;
+        color: var(--color-title-text);
       }
 
       .link {

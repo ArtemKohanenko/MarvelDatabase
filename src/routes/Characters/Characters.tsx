@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import favouritesStore from "../../stores/FavouitesStore";
 import { VirtuosoGridHandle } from "react-virtuoso";
+import { useTranslation } from "react-i18next";
 
 const Characters = () => {
   const {
@@ -21,6 +22,7 @@ const Characters = () => {
   } = CharactersStore;
   const { favourites, getFavourites, saveFavourites } = favouritesStore;
   const listRef = useRef<VirtuosoGridHandle>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     loadFirstCharacters(defaultLoadLimit);
@@ -44,11 +46,12 @@ const Characters = () => {
       <div className={classes.wrapper}>
         <div className={classes.searchBlock}>
           <div className={classes.titleContainer}>
-            <span className={classes.title}>Characters</span>
+            <span className={classes.title}>{t("characters-title")}</span>
             <span className={classes.counter}>({total})</span>
           </div>
           <SearchField
             listRef={listRef}
+            searchPlaceholder={t("search-character-placeholder")}
             searchValue={nameStartsWith}
             setSearchValue={(value) => {
               setNameStartsWith(value);

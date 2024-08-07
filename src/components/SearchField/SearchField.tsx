@@ -1,21 +1,20 @@
-import {
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import classes from "./SearchField.module.scss";
 import { VirtuosoGridHandle } from "react-virtuoso";
+import { useTranslation } from "react-i18next";
 
 const SearchField = (props: {
   searchValue: string;
+  searchPlaceholder?: string;
   listRef?: RefObject<VirtuosoGridHandle>;
   setSearchValue: (value: string) => void;
 }) => {
   const searchValue = props.searchValue;
+  const searchPlaceholder = props.searchPlaceholder ?? "";
   const listRef = props.listRef;
   const setSearchValue = props.setSearchValue;
 
+  const { t } = useTranslation();
   const [value, setValue] = useState(searchValue);
 
   const timeoutRef = useRef<NodeJS.Timeout>();
@@ -42,12 +41,12 @@ const SearchField = (props: {
       <input
         className={classes.searchField}
         type="text"
-        placeholder="Search for Characters by Name"
+        placeholder={searchPlaceholder}
         value={value}
         onChange={changeHandle}
       ></input>
       <button className={classes.searchButton} onClick={() => submitHandler()}>
-        SEARCH
+        {t("search-button")}
       </button>
     </div>
   );

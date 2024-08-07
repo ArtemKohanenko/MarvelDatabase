@@ -1,9 +1,9 @@
-import { NotificationPayload } from 'firebase/messaging';
-import classes from './Message.module.scss'
+import { NotificationPayload } from "firebase/messaging";
+import classes from "./Message.module.scss";
 
 const Message = (props: { notification?: NotificationPayload }) => {
   const notification = props.notification;
-  
+
   return (
     <>
       <div className={classes.notificationHeader}>
@@ -18,6 +18,5 @@ const Message = (props: { notification?: NotificationPayload }) => {
     </>
   );
 };
-  
-  export default Message;
-  
+
+export default Message;

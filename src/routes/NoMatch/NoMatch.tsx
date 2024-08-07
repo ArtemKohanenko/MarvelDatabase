@@ -1,5 +1,9 @@
+import { useTranslation } from "react-i18next";
+
 const NoMatch = () => {
-  return <>Page doesn't exist.</>;
+  const { t } = useTranslation();
+
+  return <>{t("page-not-exist-text")}</>;
 };
 
 export default NoMatch;

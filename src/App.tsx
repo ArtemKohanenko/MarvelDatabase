@@ -39,8 +39,6 @@ function App() {
     });
   }, []);
 
-  
-
   const routes: RouteObject[] = [
     {
       path: "/",

@@ -1,10 +1,7 @@
 import classes from "./CardsList.module.scss";
 import { IListable } from "../../types/IListable";
 import Card from "../Card/Card";
-import {
-  VirtuosoGrid,
-  VirtuosoGridHandle,
-} from "react-virtuoso";
+import { VirtuosoGrid, VirtuosoGridHandle } from "react-virtuoso";
 import Loader from "../Loader/Loader";
 import { RefObject } from "react";
 

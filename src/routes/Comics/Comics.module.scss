@@ -19,14 +19,14 @@
       .title {
         font-family: $font-secondary;
         font-size: $font-size-title;
-        color: $color-title-text;
+        color: var(--color-title-text);
         font-weight: 700;
       }
 
       .counter {
         font-family: $font-secondary;
         font-size: $font-size-subtitle;
-        color: $color-subtitle-text;
+        color: var(--color-subtitle-text);
         font-weight: 700;
       }
     }

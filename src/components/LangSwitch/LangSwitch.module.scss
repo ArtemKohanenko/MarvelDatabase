@@ -1,0 +1,35 @@
+@import "src/styles";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+
+  .button {
+    font-family: $font-secondary;
+    color: var(--color-tab-text);
+    font-size: $font-size-subtitle;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .active {
+    text-decoration: underline;
+  }
+
+  .divider {
+    color: var(--color-tab-text);
+    font-size: $font-size-title;
+  }
+
+  @media (max-width: 600px) {
+    .button {
+      font-size: $font-size-primary-mobile;
+    }
+    
+    .divider {
+      font-size: $font-size-title-mobile;
+    }
+  }
+}

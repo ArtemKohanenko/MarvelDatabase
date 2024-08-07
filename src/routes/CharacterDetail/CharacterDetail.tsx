@@ -4,6 +4,7 @@ import CharactersStore from "../../stores/CharactersStore";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { externalLinkToLocal } from "../../utils/detailUtils";
+import { useTranslation } from "react-i18next";
 
 const CharacterDetail = () => {
   const { id } = useParams();
@@ -12,6 +13,8 @@ const CharacterDetail = () => {
     selectedCharacter?.thumbnail.path +
     "." +
     selectedCharacter?.thumbnail.extension;
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (id) {
@@ -33,7 +36,7 @@ const CharacterDetail = () => {
             </span>
           </div>
           <div className={classes.rightColumn}>
-            <span className={classes.title}>Comics</span>
+            <span className={classes.title}>{t("comics-title")}</span>
             {selectedCharacter?.comics.items.map((item) => (
               <a
                 target="_blank"
